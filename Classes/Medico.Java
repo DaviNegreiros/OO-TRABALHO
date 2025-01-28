@@ -1,16 +1,19 @@
 public class Paciente {
     //nome cpf data hist
-    String nome, cpf;
+    String nome, cpf, CRM, espec;
 
     Date nasc; //falta hist
 
 
     //Metódos 
     //Create
-    Paciente(n, c, d){ //falta h
+    Paciente(n, c, d, cc, e){ //falta h
         nome = n;
         cpf = c;
         nasc = d;
+        //hist = h
+        crm = cc;
+        espec = e;
     }
 
     //Read
@@ -25,10 +28,19 @@ public class Paciente {
         return cpftxt;
 
     }
+    String getEspec(){
+        Date espectxt = espec;
+        return espectxt;
+    }
+    String getCrm(){
+        Date crmtxt = crm;
+        return crmtxt;
+    }
     Date getNasc(){
         Date nasctxt = nasc;
         return nasctxt;
     }
+
     //getHist()
 
 
@@ -42,14 +54,24 @@ public class Paciente {
     void setNasc(a){
         nasc = a;
     }
+    void setEspec(a){
+        espec = a;
+    }
+    void setCrm(a){
+        crm = a;
+    }
     //setHist()
 
-    }
+
+
+
+
+}
 
 
 
     
-}
+
 
 
 
