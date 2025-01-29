@@ -1,3 +1,6 @@
+import java.time.LocalDate;
+
+
 public class Exame{
     String tipo, resultado;
     Date dataPrescricao, dataRealizacao;
@@ -40,7 +43,7 @@ public class Exame{
     void setDataPrescricao(Date a){
         dataPrescricao = a;
     }
-    void setDataRealizacao(Date dataRealizacao){
+    void setDataRealizacao(Date a){
         dataRealizacao = a;
     }
     void setValor(float a){

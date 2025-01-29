@@ -1,3 +1,6 @@
+import java.time.LocalDate;
+
+
 public class Medicamento{
     String nomeMed, uso;
     Date dataPrescricao;

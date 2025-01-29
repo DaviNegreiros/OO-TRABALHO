@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+
 public class Paciente {
     //nome cpf data hist
     String nome, cpf, CRM, espec;

@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+
 public class Consulta{
     //CRUD
     Date data;
