@@ -2,10 +2,10 @@ public class Prescricoes {
     Consulta consultaAssociada;
     Exame examesPrescritos[];
     Medicamento medicamentosPrescritos[];
-    Date dataValidade;
+    LocalDate dataValidade;
 
     //Métodos
-    Prescricoes(Consulta c, Exame e[], Medicamento m[], Date dV){
+    Prescricoes(Consulta c, Exame e[], Medicamento m[], LocalDate dV){
         consultaAssociada = c;
         examesPrescritos[] = e[];
         medicamentosPrescritos[] = m[];
@@ -24,7 +24,7 @@ public class Prescricoes {
     Medicamento getMedicamentosPrescritos(){
         return medicamentosPrescritos[];
     }
-    Date getDataValidade(){
+    LocalDate getDataValidade(){
         return dataValidade;
     }
 

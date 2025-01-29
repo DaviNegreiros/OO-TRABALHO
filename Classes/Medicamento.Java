@@ -1,10 +1,10 @@
 public class Medicamento{
     String nomeMed, uso;
-    Date dataPrescricao;
+    LocalDate dataPrescricao;
     
 
     //Métodos
-    Exame (String nM, String u, Date dP){
+    Exame (String nM, String u, LocalDate dP){
         nomeMed = nM;
         uso = u;
         dataPrescricao = dP;
@@ -17,7 +17,7 @@ public class Medicamento{
     String getUso(){
         return uso;
     }
-    Date getDataPrescricao(){
+    LocalDate getDataPrescricao(){
         return dataPrescricao;
     }
 
@@ -28,7 +28,7 @@ public class Medicamento{
     void setUso(String a){
         uso = a;
     }
-    void setDataPrescricao(Date a){
+    void setDataPrescricao(LocalDate a){
         dataPrescricao = a;
     }
     }
