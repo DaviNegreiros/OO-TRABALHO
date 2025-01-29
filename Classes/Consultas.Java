@@ -2,7 +2,7 @@ import java.time.LocalDate;
 
 public class Consulta{
     //CRUD
-    Date data;
+    LocalDate data;
     String hora, status;
     int min;
     float valor;
@@ -12,7 +12,7 @@ public class Consulta{
     Medicamento medicamentos[]
     
     //Métodos
-    Consulta(Date d, String h, String s, int m, float v, Paciente pA, Medico mA, Exame e[], Medicamento m[]){
+    Consulta(LocalDate d, String h, String s, int m, float v, Paciente pA, Medico mA, Exame e[], Medicamento m[]){
         data = d;
         hora = h;
         status = s;
@@ -27,7 +27,7 @@ public class Consulta{
     //void newConsulta(if pagamento){}
 
     //Read
-    Date getData(){
+    LocalDate getData(){
         return data;
     }
     String getHora(){
@@ -56,7 +56,7 @@ public class Consulta{
     }
 
     //Write
-    void setData(Date a){
+    void setData(LocalDate a){
         data = a;
     }
     void setHora(String a){

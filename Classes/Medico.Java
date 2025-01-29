@@ -4,12 +4,12 @@ public class Paciente {
     //nome cpf data hist
     String nome, cpf, CRM, espec;
 
-    Date nasc; //falta hist
+    LocalDate nasc; //falta hist
 
 
     //Metódos 
     //Create
-    Paciente(String n,String c,Date d,String cc,String e){ //falta h
+    Paciente(String n,String c,LocalDate d,String cc,String e){ //falta h
         nome = n;
         cpf = c;
         nasc = d;
@@ -34,7 +34,7 @@ public class Paciente {
     String getCrm(){
         return crm;
     }
-    Date getNasc(){
+    LocalDate getNasc(){
         return nasc;
     }
 
@@ -48,7 +48,7 @@ public class Paciente {
     void setCpf(String a){
         cpf = a;
     }
-    void setNasc(Date a){
+    void setNasc(LocalDate a){
         nasc = a;
     }
     void setEspec(String a){

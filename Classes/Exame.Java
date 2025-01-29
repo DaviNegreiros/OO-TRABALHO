@@ -3,12 +3,12 @@ import java.time.LocalDate;
 
 public class Exame{
     String tipo, resultado;
-    Date dataPrescricao, dataRealizacao;
+    LocalDate dataPrescricao, dataRealizacao;
     float valor;
 
 
     //Métodos
-    Exame (String t, String r, Date dP, Date dR,float v){
+    Exame (String t, String r, LocalDate dP, LocalDate dR,float v){
         tipo = t;
         resultado = r;
         dataPrescricao = dP;
@@ -23,10 +23,10 @@ public class Exame{
     String getResultado(){
         return resultado;
     }
-    Date getDataPrescricao(){
+    LocalDate getDataPrescricao(){
         return dataPrescricao;
     }
-    Date getRealizacao(){
+    LocalDate getRealizacao(){
         return dataRealizacao;
     }
     float getValor(){
@@ -40,10 +40,10 @@ public class Exame{
     void setResultado(String a){
         resultado = a;
     }
-    void setDataPrescricao(Date a){
+    void setDataPrescricao(LocalDate a){
         dataPrescricao = a;
     }
-    void setDataRealizacao(Date a){
+    void setDataRealizacao(LocalDate dataRealizacao){
         dataRealizacao = a;
     }
     void setValor(float a){
