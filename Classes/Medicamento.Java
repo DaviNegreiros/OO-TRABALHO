@@ -7,7 +7,7 @@ public class Medicamento{
     
 
     //Métodos
-    Exame (String nM, String u, LocalDate dP){
+    Medicamento (String nM, String u, LocalDate dP){
         nomeMed = nM;
         uso = u;
         dataPrescricao = dP;
@@ -26,7 +26,7 @@ public class Medicamento{
 
     //Write
     void setNomeMed(String a){
-        nomeMEd = a;
+        nomeMed = a;
     }
     void setUso(String a){
         uso = a;

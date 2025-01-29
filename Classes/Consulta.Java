@@ -8,20 +8,20 @@ public class Consulta{
     float valor;
     Paciente pacienteAssociado;
     Medico medicoAssociado;
-    Exame exames[]
-    Medicamento medicamentos[]
+    Exame[] exames;
+    Medicamento[] medicamentos;
     
     //Métodos
-    Consulta(LocalDate d, String h, String s, int m, float v, Paciente pA, Medico mA, Exame e[], Medicamento m[]){
+    Consulta(LocalDate d, String h, String s, int mi, float v, Paciente pA, Medico mA, Exame[] e, Medicamento[] m){
         data = d;
         hora = h;
         status = s;
-        min = m;
+        min = mi;
         valor = v;
         pacienteAssociado = pA;
         medicoAssociado = mA;
-        exames[] = e[];
-        medicamentos[] = medicamentos[];
+        exames = e;
+        medicamentos = medicamentos;
     }
     
     //void newConsulta(if pagamento){}
@@ -48,11 +48,11 @@ public class Consulta{
     Medico getMedicoAssociado(){
         return medicoAssociado;
     }
-    Exame getExames(){
-        return exames[];
+    Exame[] getExames(){
+        return exames;
     }
-    Medicamento getMedicamentos(){
-        return medicamentos[];
+    Medicamento[] getMedicamentos(){
+        return medicamentos;
     }
 
     //Write
@@ -77,11 +77,11 @@ public class Consulta{
     void setMedicoAssociado(Medico a){
         medicoAssociado = a;
     }
-    void setExames(Exame a[]){
-        exames[] = a[];
+    void setExames(Exame[] a){
+        exames = a;
     }
-    void setMedicamentos(Medicamento a[]){
-        medicamentos[] = a[];
+    void setMedicamentos(Medicamento[] a){
+        medicamentos = a;
     }
 
 

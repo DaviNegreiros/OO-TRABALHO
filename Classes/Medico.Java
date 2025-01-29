@@ -1,15 +1,15 @@
 import java.time.LocalDate;
 
-public class Paciente {
+public class Medico {
     //nome cpf data hist
-    String nome, cpf, CRM, espec;
+    String nome, cpf, crm, espec;
 
     LocalDate nasc; //falta hist
 
 
     //Metódos 
     //Create
-    Paciente(String n,String c,LocalDate d,String cc,String e){ //falta h
+    Medico(String n,String c,LocalDate d,String cc,String e){ //falta h
         nome = n;
         cpf = c;
         nasc = d;
