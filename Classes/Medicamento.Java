@@ -24,7 +24,7 @@ public class Medicamento{
         return dataPrescricao;
     }
 
-    //Write
+    //Update
     void setNomeMed(String a){
         nomeMed = a;
     }

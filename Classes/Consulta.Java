@@ -55,7 +55,7 @@ public class Consulta{
         return medicamentos;
     }
 
-    //Write
+    //Uptade
     void setData(LocalDate a){
         data = a;
     }

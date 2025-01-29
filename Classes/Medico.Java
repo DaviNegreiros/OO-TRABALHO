@@ -41,7 +41,7 @@ public class Medico {
     //getHist()
 
 
-    //Write
+    //Update
     void setNome(String a){
         nome = a;
     }

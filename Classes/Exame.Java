@@ -33,7 +33,7 @@ public class Exame{
         return valor;
     }
 
-    //Write
+    //Update
     void setTipo(String a){
         tipo = a;
     }
