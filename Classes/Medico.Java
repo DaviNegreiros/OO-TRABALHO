@@ -7,7 +7,7 @@ public class Paciente {
 
     //Metódos 
     //Create
-    Paciente(n, c, d, cc, e){ //falta h
+    Paciente(String n,String c,Date d,String cc,String e){ //falta h
         nome = n;
         cpf = c;
         nasc = d;
@@ -18,46 +18,41 @@ public class Paciente {
 
     //Read
     String getNome(){
-        String nometxt = nome;
-        return nometxt;
+        return nome;
 
     }
     String getCpf(){
 
-        String cpftxt = cpf;
-        return cpftxt;
+        return cpf;
 
     }
     String getEspec(){
-        Date espectxt = espec;
-        return espectxt;
+        return espec;
     }
     String getCrm(){
-        Date crmtxt = crm;
-        return crmtxt;
+        return crm;
     }
     Date getNasc(){
-        Date nasctxt = nasc;
-        return nasctxt;
+        return nasc;
     }
 
     //getHist()
 
 
     //Write
-    void setNome(a){
+    void setNome(String a){
         nome = a;
     }
-    void setCpf(a){
+    void setCpf(String a){
         cpf = a;
     }
-    void setNasc(a){
+    void setNasc(Date a){
         nasc = a;
     }
-    void setEspec(a){
+    void setEspec(String a){
         espec = a;
     }
-    void setCrm(a){
+    void setCrm(String a){
         crm = a;
     }
     //setHist()

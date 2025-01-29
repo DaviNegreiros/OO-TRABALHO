@@ -1,16 +1,17 @@
 public class Paciente {
     //nome cpf data hist
     String nome, cpf;
-
+    boolean pagamentoPendente;
     Date nasc; //falta hist
 
 
     //Metódos 
     //Create
-    Paciente(n, c, d){ //falta h
+    Paciente(String n,String c,Date d){ //falta h
         nome = n;
         cpf = c;
         nasc = d;
+        pagamentoPendente = false;
     }
 
     //Read
@@ -29,27 +30,35 @@ public class Paciente {
         Date nasctxt = nasc;
         return nasctxt;
     }
+    boolean getPagamentoPendente(){
+        return pagamentoPendente;
+    }
     //getHist()
 
 
     //Write
-    void setNome(a){
+    void setNome(String a){
         nome = a;
     }
-    void setCpf(a){
+    void setCpf(String a){
         cpf = a;
     }
-    void setNasc(a){
+    void setNasc(Date a){
         nasc = a;
     }
+    void setPagamentoPendente(boolean a){
+        pagamentoPendente = a;
+    }
     //setHist()
+
+    
 
     }
 
 
 
     
-}
+
 
 
 
