@@ -1,3 +1,5 @@
+import java.time.LocalDate;
+
 public class Prescricoes {
     Consulta consultaAssociada;
     Exame examesPrescritos[];

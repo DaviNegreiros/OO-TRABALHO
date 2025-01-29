@@ -1,0 +1,7 @@
+Se liga, Java é uma linguagem onde precisamos compilar os arquivos.
+Ou sejam editamos os códigos em arquivos .Java 
+compilamos esses códigos usando: "javac Arquivo.java" no terminal 
+e depois escrevemos no terminal: "Java Arquivo" para rodar o código
+
+depois de uma edição no código devemos compilar novamente o código
+caso contrário não haverá alteração.
