@@ -36,7 +36,7 @@ public class Paciente {
     //getHist()
 
 
-    //Write
+    //Update
     void setNome(String a){
         nome = a;
     }

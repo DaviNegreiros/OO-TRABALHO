@@ -28,8 +28,6 @@ public class Prescricoes {
         return dataValidade;
     }
 
-    //Write
-
 
 
 
