@@ -6,7 +6,6 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        List<Pessoa> listaPessoas = new ArrayList<>();
 
         while (true) {
             System.out.println("\n===== MENU PRINCIPAL =====");
