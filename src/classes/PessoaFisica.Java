@@ -41,9 +41,10 @@ public class PessoaFisica {
         this.nome = nome;
     }
 
-    public String exibirDados() {
-        return "Nome: " + getNome() + "\n" +
-                "CPF: " + getCpf() + "\n" +
-                "Data de Nascimento: " + getNasc() + " \n";
+    public void exibirDados() {
+        System.out.println("Nome: " + getNome() + "\n"+
+        "CPF: " + getCpf() + "\n" +
+        "Data de Nascimento: " + getNasc() + " \n");
+
     }
 }

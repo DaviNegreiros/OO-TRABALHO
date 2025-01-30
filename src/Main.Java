@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.time.LocalDate;
 
+import classes.*; // Importa todas as classes do pacote "classes"
 
 public class Main {
     public static void main(String[] args) {
@@ -19,13 +20,13 @@ public class Main {
 
             switch (opcao) {
                 case 1: 
-                    System.out.println("1 escolhido:")
+                    System.out.println("1 escolhido:");
                     // Criando um médico
-                    Medico medico1 = new Medico("Dr. João", "123.456.789-00", "14-02-1975", "CRM12345", "Cardiologista");
+                    Medico medico1 = new Medico("Dr Joao", "12345678900", "14021975", "CRM12345", "Cardiologista");
                     
                     // Exibindo os dados
                     medico1.exibirDados();
-
+                    break;
                 case 0:
                     System.out.println("Saindo do programa...");
                     scanner.close();
