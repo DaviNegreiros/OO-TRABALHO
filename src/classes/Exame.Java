@@ -1,5 +1,6 @@
-import java.time.LocalDate;
+package classes;
 
+import java.time.LocalDate;
 
 public class Exame{
     String tipo, resultado;
