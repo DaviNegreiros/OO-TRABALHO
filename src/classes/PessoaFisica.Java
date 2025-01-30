@@ -41,8 +41,7 @@ public class PessoaFisica {
         this.nome = nome;
     }
 
-    @Override
-    public String toString() {
+    public String exibirDados() {
         return "Nome: " + getNome() + "\n" +
                 "CPF: " + getCpf() + "\n" +
                 "Data de Nascimento: " + getNasc() + " \n";
