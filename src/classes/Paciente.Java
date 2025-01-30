@@ -1,38 +1,20 @@
 import java.time.LocalDate;
 
 
-public class Paciente {
+public class Paciente extends PessoaFisica{
     //nome cpf data hist
-    String nome, cpf;
     boolean pagamentoPendente;
-    LocalDate nasc; //falta hist
+    //falta hist
 
 
     //Metódos 
     //Create
-    Paciente(String n,String c,LocalDate d){ //falta h
-        nome = n;
-        cpf = c;
-        nasc = d;
+    Paciente(String nome,String cpf,LocalDate nasc){ //falta h
+        super(nome, cpf, nasc);
         pagamentoPendente = false;
     }
 
     //Read
-    String getNome(){
-        String nometxt = nome;
-        return nometxt;
-
-    }
-    String getCpf(){
-
-        String cpftxt = cpf;
-        return cpftxt;
-
-    }
-    LocalDate getNasc(){
-        LocalDate nasctxt = nasc;
-        return nasctxt;
-    }
     boolean getPagamentoPendente(){
         return pagamentoPendente;
     }
@@ -40,15 +22,6 @@ public class Paciente {
 
 
     //Update
-    void setNome(String a){
-        nome = a;
-    }
-    void setCpf(String a){
-        cpf = a;
-    }
-    void setNasc(LocalDate a){
-        nasc = a;
-    }
     void setPagamentoPendente(boolean a){
         pagamentoPendente = a;
     }

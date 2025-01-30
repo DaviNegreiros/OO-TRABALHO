@@ -1,36 +1,18 @@
 import java.time.LocalDate;
 
-public class Medico {
+public class Medico extends PessoaFisica {
     //nome cpf data hist
-    String nome, cpf, crm, espec;
-
-    LocalDate nasc; //falta hist
-
+    String crm, espec;
 
     //Metódos 
     //Create
-    Medico(String n,String c,LocalDate d,String cc,String e){ //falta h
-        nome = n;
-        cpf = c;
-        nasc = d;
+    Medico(String nome,String cpf,LocalDate nasc,String crm,String espec){ //falta h
         //hist = h
-        crm = cc;
-        espec = e;
+        this.crm = crm;
+        this.espec = espec;
     }
 
     //Read
-    String getNome(){
-        return nome;
-
-    }
-    String getCpf(){
-
-        return cpf;
-
-    }
-    String getEspec(){
-        return espec;
-    }
     String getCrm(){
         return crm;
     }
@@ -42,15 +24,6 @@ public class Medico {
 
 
     //Update
-    void setNome(String a){
-        nome = a;
-    }
-    void setCpf(String a){
-        cpf = a;
-    }
-    void setNasc(LocalDate a){
-        nasc = a;
-    }
     void setEspec(String a){
         espec = a;
     }
