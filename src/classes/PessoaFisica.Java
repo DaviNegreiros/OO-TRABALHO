@@ -43,8 +43,9 @@ public class PessoaFisica {
 
     @Override
     public String toString() {
-        return "Nome: " + getNome() + "\n" +
-                "CPF: " + getCpf() + "\n" +
-                "Data de Nascimento: " + getNasc() + " \n";
+        return "Nome: " + getNome() + "\n"+
+        "CPF: " + getCpf() + "\n" +
+        "Data de Nascimento: " + getNasc() + " \n";
+
     }
 }

@@ -28,6 +28,13 @@ public class Paciente extends PessoaFisica{
     }
     //setHist()
 
+    @Override
+    public String toString() {
+        return "Nome: " + getNome() + "\n"+
+        "CPF: " + getCpf() + "\n" +
+        "Data de Nascimento: " + getNasc() + " \n" 
+        + "Pagamento Pendente: " + pagamentoPendente + "\n";
+    }
     
 
     }
