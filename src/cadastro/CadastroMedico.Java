@@ -2,35 +2,32 @@ package cadastro;
 
 import classes.Medico;
 import exceptions.CampoEmBrancoException;
-import javax.swing.JOptionPane;
+import exceptions.CpfDuplicadoException; //PRECISA DESSE EXCEPTION
+import exceptions.CrmDuplicadoException; //PRECISA DESSE EXCEPTION
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CadastroMedico {
 
     // Atributos
-    private int numMedicos;
-    private Medico[] medicos;
+    private List<Medico> medicos;
 
     // Construtor
     public CadastroMedico() {
-        numMedicos = 0;
-        medicos = new Medico[0];
+        medicos = new ArrayList<>();
     }
 
     // Método para cadastrar médicos
-    public int cadastrarMedico(Medico m) throws CampoEmBrancoException {
+    public int cadastrarMedico(Medico m) throws CampoEmBrancoException, CpfDuplicadoException, CrmDuplicadoException {
         if (m == null) {
             throw new CampoEmBrancoException("médico");
         }
         verificarCamposEmBranco(m);
-        Medico[] temp = new Medico[numMedicos + 1];
-        for (int i = 0; i < medicos.length; i++) {
-            temp[i] = medicos[i];
-        }
-        temp[temp.length - 1] = m;
-        medicos = temp;
-        numMedicos++;
-        return numMedicos;
+        verificarCpfDuplicado(m.getCpf());
+        verificarCrmDuplicado(m.getCrm());
+        medicos.add(m);
+        return medicos.size();
     }
 
     // Método para pesquisar médicos pelo CRM
@@ -48,23 +45,7 @@ public class CadastroMedico {
         if (m == null) {
             return false;
         }
-
-        Medico medico = pesquisarMedico(m.getCrm());
-        if (medico == null) {
-            return false;
-        }
-
-        Medico[] temp = new Medico[numMedicos - 1];
-        int j = 0;
-        for (int i = 0; i < numMedicos; i++) {
-            if (medicos[i] != medico) {
-                temp[j] = medicos[i];
-                j++;
-            }
-        }
-        medicos = temp;
-        numMedicos--;
-        return true;
+        return medicos.remove(m);
     }
 
     // Método para atualizar médicos
@@ -73,18 +54,13 @@ public class CadastroMedico {
             throw new CampoEmBrancoException("médico");
         }
         verificarCamposEmBranco(m);
-        int i;
-        for (i = 0; i < medicos.length; i++) {
-            if (medicos[i].getCrm().equalsIgnoreCase(crm)) {
-                break;
+        for (int i = 0; i < medicos.size(); i++) {
+            if (medicos.get(i).getCrm().equalsIgnoreCase(crm)) {
+                medicos.set(i, m);
+                return true;
             }
         }
-        if (i >= numMedicos) {
-            return false;
-        } else {
-            medicos[i] = m;
-        }
-        return true;
+        return false;
     }
 
     // Método para verificar campos em branco
@@ -95,6 +71,9 @@ public class CadastroMedico {
         if (m.getCpf() == null || m.getCpf().trim().isEmpty()) {
             throw new CampoEmBrancoException("CPF");
         }
+        if (!m.getCpf().matches("\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}")) {
+            throw new CampoEmBrancoException("CPF deve estar no formato XXX.XXX.XXX-XX.");
+        }
         if (m.getCrm() == null || m.getCrm().trim().isEmpty()) {
             throw new CampoEmBrancoException("CRM");
         }
@@ -103,23 +82,21 @@ public class CadastroMedico {
         }
     }
 
-    // Método para interação com o usuário
-    public void cadastrarMedicoInterface() {
-        try {
-            String nome = JOptionPane.showInputDialog("Informe o nome do médico:");
-            String cpf = JOptionPane.showInputDialog("Informe o CPF do médico:");
-            String nasc = JOptionPane.showInputDialog("Informe a data de nascimento do médico (yyyy-mm-dd):");
-            String crm = JOptionPane.showInputDialog("Informe o CRM do médico:");
-            String espec = JOptionPane.showInputDialog("Informe a especialidade do médico:");
+    // Método para verificar CPF duplicado
+    private void verificarCpfDuplicado(String cpf) throws CpfDuplicadoException {
+        for (Medico m : medicos) {
+            if (m.getCpf().equals(cpf)) {
+                throw new CpfDuplicadoException("CPF já cadastrado.");
+            }
+        }
+    }
 
-            Medico medico = new Medico(nome, cpf, LocalDate.parse(nasc), crm, espec);
-            cadastrarMedico(medico);
-
-            JOptionPane.showMessageDialog(null, "Médico cadastrado com sucesso!\n" + medico.toString());
-        } catch (CampoEmBrancoException e) {
-            JOptionPane.showMessageDialog(null, "Erro: " + e.getMessage());
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Erro inesperado: " + e.getMessage());
+    // Método para verificar CRM duplicado
+    private void verificarCrmDuplicado(String crm) throws CrmDuplicadoException {
+        for (Medico m : medicos) {
+            if (m.getCrm().equalsIgnoreCase(crm)) {
+                throw new CrmDuplicadoException("CRM já cadastrado.");
+            }
         }
     }
 }

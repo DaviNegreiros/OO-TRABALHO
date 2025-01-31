@@ -8,10 +8,6 @@ import java.util.List;
 
 public class CadastroPaciente {
 
-    //Nesse CadastroPaciente eu fiz pensando em um view que coloquei em outra pasta, não sei se vcs vao querer
-    //fazer desse jeito, o CadastroMedico esta com o chamado do recurso grafico no proprio codigo
-    //qlqr coisa faco o MenuMedico tb ou adapto esse do mesmo jeito do CadastroMedico com JOptionPane
-
     // Atributos
     private List<Paciente> pacientes; // Usando List para armazenar os pacientes
 
