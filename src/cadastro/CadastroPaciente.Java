@@ -2,6 +2,7 @@ package cadastros;
 
 import classes.Paciente;
 import exceptions.CampoEmBrancoException;
+import exceptions.CpfDuplicadoException; // FALTA ESSE
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,13 +18,13 @@ public class CadastroPaciente {
     }
 
     // Método para cadastrar pacientes
-    public int cadastrarPaciente(Paciente p) throws CampoEmBrancoException {
+    public int cadastrarPaciente(Paciente p) throws CampoEmBrancoException, CpfDuplicadoException {
         if (p == null) {
             throw new CampoEmBrancoException("paciente");
         }
         verificarCamposEmBranco(p);
         if (cpfJaCadastrado(p.getCpf())) {
-            throw new CampoEmBrancoException("CPF já cadastrado.");
+            throw new CpfDuplicadoException("CPF já cadastrado."); // Lança a exceção CpfDuplicadoException
         }
         pacientes.add(p);
         return pacientes.size();

@@ -4,6 +4,7 @@ import javax.swing.JOptionPane;
 import classes.Paciente;
 import cadastros.CadastroPaciente;
 import exceptions.CampoEmBrancoException;
+import exceptions.CpfDuplicadoException; // FALTA ESSE
 import java.time.LocalDate;
 
 public class MenuPaciente {
@@ -62,6 +63,8 @@ public class MenuPaciente {
                             cadPaciente.cadastrarPaciente(novoPaciente);
                             JOptionPane.showMessageDialog(null, "Paciente cadastrado com sucesso.");
                         } catch (CampoEmBrancoException e) {
+                            JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+                        } catch (CpfDuplicadoException e) {
                             JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
                         }
                     }
