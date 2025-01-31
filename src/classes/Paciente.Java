@@ -28,10 +28,12 @@ public class Paciente extends PessoaFisica{
     }
     //setHist()
 
-    //@Override
-    public void exibirDados() {
-        super.exibirDados(); // Chama o método da classe pai
-        System.out.println("Pagamento Pendente: " + pagamentoPendente);
+    @Override
+    public String toString() {
+        return "Nome: " + getNome() + "\n"+
+        "CPF: " + getCpf() + "\n" +
+        "Data de Nascimento: " + getNasc() + " \n" 
+        + "Pagamento Pendente: " + pagamentoPendente + "\n";
     }
     
 

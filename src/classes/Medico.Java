@@ -39,8 +39,8 @@ public class Medico extends PessoaFisica {
         return "Nome: " + getNome() + "\n"+
         "CPF: " + getCpf() + "\n" +
         "Data de Nascimento: " + getNasc() + " \n" +
-        "CRM: " + crm
-        + "Especialidade: " + espec;
+        "CRM: " + crm + "\n"
+        + "Especialidade: " + espec +"\n";
     }
     
 
