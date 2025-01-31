@@ -1,5 +1,4 @@
 package classes;
-
 import java.time.LocalDate;
 
 public class Medico extends PessoaFisica {
@@ -8,7 +7,8 @@ public class Medico extends PessoaFisica {
 
     //Metódos 
     //Create
-    Medico(String nome,String cpf,LocalDate nasc,String crm,String espec){ //falta h
+    public Medico(String nome,String cpf,LocalDate nasc,String crm,String espec){ //falta h
+        super(nome, cpf, nasc);
         //hist = h
         this.crm = crm;
         this.espec = espec;
@@ -18,8 +18,8 @@ public class Medico extends PessoaFisica {
     String getCrm(){
         return crm;
     }
-    LocalDate getNasc(){
-        return nasc;
+    String getEspec(){
+        return espec;
     }
 
     //getHist()
@@ -35,11 +35,14 @@ public class Medico extends PessoaFisica {
     //setHist()
 
     @Override
-    public void exibirDados() {
-        super.exibirDados(); // Chama o método da classe pai
-        System.out.println("CRM: " + crm);
-        System.out.println("Especialidade: " + espec);
+    public String toString() {
+        return "Nome: " + getNome() + "\n"+
+        "CPF: " + getCpf() + "\n" +
+        "Data de Nascimento: " + getNasc() + " \n" +
+        "CRM: " + crm
+        + "Especialidade: " + espec;
     }
+    
 
 
 

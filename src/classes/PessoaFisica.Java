@@ -41,10 +41,11 @@ public class PessoaFisica {
         this.nome = nome;
     }
 
-    public void exibirDados() {
-        System.out.println("Nome: " + getNome() + "\n"+
+    @Override
+    public String toString() {
+        return "Nome: " + getNome() + "\n"+
         "CPF: " + getCpf() + "\n" +
-        "Data de Nascimento: " + getNasc() + " \n");
+        "Data de Nascimento: " + getNasc() + " \n";
 
     }
 }
