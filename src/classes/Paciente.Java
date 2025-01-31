@@ -1,6 +1,7 @@
 package classes;
 
 import java.time.LocalDate;
+import exceptions.PagamentoPendenteException;
 
 public class Paciente extends PessoaFisica{
     //nome cpf data hist
@@ -35,7 +36,11 @@ public class Paciente extends PessoaFisica{
         "Data de Nascimento: " + getNasc() + " \n" 
         + "Pagamento Pendente: " + pagamentoPendente + "\n";
     }
-    
+    public void verificarPagamento() throws PagamentoPendenteException {
+        if (pagamentoPendente) {
+            throw new PagamentoPendenteException("O pagamento do paciente " + getNome() + " está pendente.");
+        }
+    }
 
     }
 

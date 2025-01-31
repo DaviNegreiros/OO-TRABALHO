@@ -1,6 +1,8 @@
 package classes;
 
 import java.time.LocalDate;
+import exceptions.HorarioIndisponivelException;
+import exceptions.PagamentoPendenteException;
 
 public class Consulta{
     //CRUD
@@ -85,6 +87,16 @@ public class Consulta{
     void setMedicamentos(Medicamento[] a){
         medicamentos = a;
     }
-
+    public void agendarConsulta() throws HorarioIndisponivelException, PagamentoPendenteException {
+        if (pacienteAssociado.temPagamentoPendente()) { 
+            throw new PagamentoPendenteException("Consulta não pode ser agendada. O paciente possui pagamentos pendentes.");
+        }
+    
+        if (medicoAssociado.horarioOcupado(data, hora)) {
+            throw new HorarioIndisponivelException("O médico já tem uma consulta agendada neste horário.");
+        }
+        status = "Confirmada";  
+        System.out.println("Consulta agendada com sucesso para " + d + " às " + h);
+    }
 
 }
