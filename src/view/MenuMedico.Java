@@ -6,8 +6,8 @@ import classes.Consulta;
 import classes.Exame;
 import cadastro.CadastroMedico;
 import exceptions.CampoEmBrancoException;
-import exceptions.CpfDuplicadoException;//FALTA ESSE
-import exceptions.CrmDuplicadoException;//FALTA ESSE
+import exceptions.CpfDuplicadoException;
+import exceptions.CrmDuplicadoException;
 import java.time.LocalDate;
 
 public class MenuMedico {
