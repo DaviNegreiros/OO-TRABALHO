@@ -2,7 +2,7 @@ package view;
 
 import javax.swing.JOptionPane;
 import classes.Paciente;
-import cadastros.CadastroPaciente;
+import cadastro.CadastroPaciente;
 import exceptions.CampoEmBrancoException;
 import exceptions.CpfDuplicadoException; // FALTA ESSE
 import java.time.LocalDate;
