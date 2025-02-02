@@ -1,7 +1,7 @@
 package classes;
 
-import java.time.LocalDate;
 import exceptions.PagamentoPendenteException;
+import java.time.LocalDate;
 
 public class Paciente extends PessoaFisica{
     //nome cpf data hist
@@ -11,7 +11,7 @@ public class Paciente extends PessoaFisica{
 
     //Metódos 
     //Create
-    Paciente(String nome,String cpf,LocalDate nasc){ //falta h
+    public Paciente(String nome,String cpf,LocalDate nasc){ //falta h
         super(nome, cpf, nasc);
         pagamentoPendente = false;
     }

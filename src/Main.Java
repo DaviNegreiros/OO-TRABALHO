@@ -4,9 +4,7 @@ import java.util.List;
 import java.util.Scanner;
 import java.time.LocalDate;
 import javax.swing.JOptionPane;
-import exceptions.PagamentoPendenteException;
-import exceptions.HorarioIndisponivelException;
-import exceptions.EspecialidadeInvalidaException;
+import exceptions.*;
 
 
 import classes.*; // Importa todas as classes do pacote "classes"
@@ -15,9 +13,24 @@ import classes.*; // Importa todas as classes do pacote "classes"
 
 
 public class Main {
+    public static boolean isInteger(String str) {
+        try {
+            Integer.parseInt(str);  // Tenta converter para inteiro
+            return true;  // Se não lançar exceção, é um inteiro
+        } catch (NumberFormatException e) {
+            return false;  // Se lançar exceção, não é um inteiro
+        }
+    }
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
 
+        
+        // Declaração de medico1 fora do switch
+        Medico medico1 = null;
+
+
+
+        Scanner scanner = new Scanner(System.in);
+        int opcao;
 
         String msg = "\nMenu Principal" +
                     "\n1. Teste novo Médico" +
@@ -26,14 +39,17 @@ public class Main {
         
         while (true) {
             String strOpcao = JOptionPane.showInputDialog(msg);
-            int opcao = Integer.parseInt(strOpcao); 
+            if(isInteger(strOpcao)){
+                opcao = Integer.parseInt(strOpcao); 
+            } else{
+                opcao = 1000; //deafault
+            }
 
             switch (opcao) {
                 case 1: 
                                      
 
                     // Criando médico
-                    Medico medico1;
                     medico1 = new Medico("Dr Joao", "12345678900", LocalDate.parse("1975-02-14"), "CRM12345", "Cardiologista");
                     
                     // Exibindo dados do medico
@@ -83,6 +99,7 @@ public class Main {
 
                     } catch (EspecialidadeInvalidaException e) {
                         JOptionPane.showMessageDialog(null, e.getMessage());  
+                    }
                     break;
                 case 0:
                     JOptionPane.showMessageDialog(null, "Saindo do programa...");   
@@ -95,5 +112,4 @@ public class Main {
             }
         }
     }
-}
 }

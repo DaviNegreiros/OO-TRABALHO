@@ -1,9 +1,7 @@
 package cadastro;
 
 import classes.Medico;
-import exceptions.CampoEmBrancoException;
-import exceptions.CpfDuplicadoException; //PRECISA DESSE EXCEPTION
-import exceptions.CrmDuplicadoException; //PRECISA DESSE EXCEPTION
+import exceptions.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;

@@ -25,7 +25,7 @@ public class Consulta{
         pacienteAssociado = pA;
         medicoAssociado = mA;
         exames = e;
-        medicamentos = medicamentos;
+        medicamentos = m;
     }
     
     //void newConsulta(if pagamento){}
@@ -88,7 +88,7 @@ public class Consulta{
         medicamentos = a;
     }
     public void agendarConsulta() throws HorarioIndisponivelException, PagamentoPendenteException {
-        if (pacienteAssociado.temPagamentoPendente()) { 
+        if (pacienteAssociado.getPagamentoPendente()) { 
             throw new PagamentoPendenteException("Consulta não pode ser agendada. O paciente possui pagamentos pendentes.");
         }
     
@@ -96,7 +96,7 @@ public class Consulta{
             throw new HorarioIndisponivelException("O médico já tem uma consulta agendada neste horário.");
         }
         status = "Confirmada";  
-        System.out.println("Consulta agendada com sucesso para " + d + " às " + h);
+        System.out.println("Consulta agendada com sucesso para " + data + " às " + hora);
     }
 
 }

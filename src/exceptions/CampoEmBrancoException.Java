@@ -1,4 +1,4 @@
-package cadastros;
+package exceptions;
 
 public class CampoEmBrancoException extends Exception {
     public CampoEmBrancoException(String campo) {

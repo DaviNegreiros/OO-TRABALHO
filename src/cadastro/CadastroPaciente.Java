@@ -1,8 +1,7 @@
 package cadastros;
 
 import classes.Paciente;
-import exceptions.CampoEmBrancoException;
-import exceptions.CpfDuplicadoException; // FALTA ESSE
+import exceptions.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;

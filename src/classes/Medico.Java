@@ -1,9 +1,9 @@
 package classes;
 
+import exceptions.EspecialidadeInvalidaException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import exceptions.EspecialidadeInvalidaException;
 
 public class Medico extends PessoaFisica {
     // Atributos
@@ -19,7 +19,7 @@ public class Medico extends PessoaFisica {
         this.espec = espec;
         this.consultas = new ArrayList<>();
         this.exames = new ArrayList<>();
-        validarEspecialidade(espec);
+        //validarEspecialidade(espec); isso não deve ser chamado aqui, mas sim antes do construtor
         
     }
 
@@ -103,6 +103,22 @@ public class Medico extends PessoaFisica {
 
     }
 
+
+
+
+
+
+    public boolean horarioOcupado(LocalDate data, String hora) {
+        // Lógica para verificar se o horário está ocupado
+        return false; // Modifique conforme necessário
+    }
+    // Método para verificar disponibilidade do horário
+    public boolean isHorarioDisponivel(String horario) {
+        // Lógica para verificar se o horário está disponível
+        // Aqui é apenas um exemplo. Implemente conforme o necessário.
+        // Por exemplo, verificar se o médico já tem consulta marcada no horário.
+        return !horario.equals("14:00");  // Exemplo simples: horário 14:00 não disponível
+    }
 }
 
 
