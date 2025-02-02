@@ -5,3 +5,10 @@ e depois escrevemos no terminal: "Java Arquivo" para rodar o código
 
 depois de uma edição no código devemos compilar novamente o código
 caso contrário não haverá alteração.
+
+
+
+pra ele escrever com acento e etc tem que compilar usando esse UTF-8
+
+
+javac -encoding UTF-8 -d ../out -cp ../out Main.java
