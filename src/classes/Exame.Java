@@ -9,7 +9,7 @@ public class Exame{
 
 
     //Métodos
-    Exame (String t, String r, LocalDate dP, LocalDate dR,float v){
+    public Exame (String t, String r, LocalDate dP, LocalDate dR,float v){
         tipo = t;
         resultado = r;
         dataPrescricao = dP;

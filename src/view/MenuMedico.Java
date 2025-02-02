@@ -9,6 +9,8 @@ import exceptions.CampoEmBrancoException;
 import exceptions.CpfDuplicadoException;
 import exceptions.CrmDuplicadoException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 public class MenuMedico {
 
@@ -29,7 +31,27 @@ public class MenuMedico {
             return null;
         }
     }
+    //verifica e retorna uma data valida
+    public static LocalDate obterDataValida() {
+        DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        LocalDate dataDaConsulta = null;
+        
+        while (dataDaConsulta == null) {
+            String entrada = JOptionPane.showInputDialog(null, "Informe a data da consulta (dd-mm-aaaa): ", "Data da consulta", JOptionPane.QUESTION_MESSAGE);
+            
+            if (entrada == null) { // Usuário clicou em "Cancelar"
+                JOptionPane.showMessageDialog(null, "Operação cancelada.", "Cancelado", JOptionPane.INFORMATION_MESSAGE);
+                return null;
+            }
 
+            try {
+                dataDaConsulta = LocalDate.parse(entrada, inputFormatter);
+            } catch (DateTimeParseException e) {
+                JOptionPane.showMessageDialog(null, "Formato inválido! Tente novamente.", "Erro", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        return dataDaConsulta;
+    }
     // Solicita o nome do médico ao usuário
     private static String lerNome() {
         return JOptionPane.showInputDialog("Informe o nome do médico: ");
@@ -131,9 +153,19 @@ public class MenuMedico {
                     crm = lerCRM();
                     Medico medicoConsulta = cadMedico.pesquisarMedico(crm);
                     if (medicoConsulta != null) {
-                        String dataConsulta = JOptionPane.showInputDialog("Informe a data da consulta (yyyy-mm-dd): ");
-                        String descricaoConsulta = JOptionPane.showInputDialog("Informe a descrição da consulta: ");
-                        Consulta consulta = new Consulta(dataConsulta, descricaoConsulta);
+                        LocalDate dataConsultaLD = obterDataValida();
+                        String horarioDaConsulta = JOptionPane.showInputDialog("Informe o horário da consulta: ");
+                        String statusDaConsulta = JOptionPane.showInputDialog("Informe o status da consulta: ");
+                        String txtMinDaConsulta = JOptionPane.showInputDialog("Informe a duração da consulta em minutos: ");
+                        int minDaConsulta = Integer.parseInt(txtMinDaConsulta);
+                        String txtValorDaConsulta = JOptionPane.showInputDialog("Informe o valor da consulta: ");
+                        float valorDaConsulta = Float.parseFloat(txtValorDaConsulta);
+                        
+                        //Paciente pAssociadoDaConsulta = JOptionPane.showInputDialog("Informe o paciente da consulta: ");
+                        
+                        
+
+                        Consulta consulta = new Consulta(dataConsultaLD, horarioDaConsulta, statusDaConsulta, minDaConsulta, valorDaConsulta, null, medicoConsulta);
                         medicoConsulta.adicionarConsulta(consulta);
                         JOptionPane.showMessageDialog(null, "Consulta adicionada ao histórico.");
                     } else {
@@ -146,9 +178,13 @@ public class MenuMedico {
                     crm = lerCRM();
                     Medico medicoExame = cadMedico.pesquisarMedico(crm);
                     if (medicoExame != null) {
-                        String dataExame = JOptionPane.showInputDialog("Informe a data do exame (yyyy-mm-dd): ");
+                        LocalDate dataPrescricaoExame = obterDataValida();
+                        LocalDate dataRealizacaoExame = obterDataValida();
                         String tipoExame = JOptionPane.showInputDialog("Informe o tipo do exame: ");
-                        Exame exame = new Exame(dataExame, tipoExame);
+                        String valorExame = JOptionPane.showInputDialog("Informe o valor do exame: ");
+                        float floatValorExame = Float.parseFloat(valorExame);
+                        String resultadoExame = JOptionPane.showInputDialog("Informe o resultado do exame: ");
+                        Exame exame = new Exame(tipoExame, resultadoExame, dataPrescricaoExame, dataRealizacaoExame, floatValorExame);
                         medicoExame.adicionarExame(exame);
                         JOptionPane.showMessageDialog(null, "Exame adicionado ao histórico.");
                     } else {

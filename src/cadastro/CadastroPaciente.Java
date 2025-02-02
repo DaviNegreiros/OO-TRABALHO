@@ -1,4 +1,4 @@
-package cadastros;
+package cadastro;
 
 import classes.Paciente;
 import exceptions.*;

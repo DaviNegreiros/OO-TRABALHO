@@ -14,6 +14,7 @@ public class Medico extends PessoaFisica {
 
     // Construtor
     public Medico(String nome, String cpf, LocalDate nasc, String crm, String espec) {
+        
         super(nome, cpf, nasc);
         this.crm = crm;
         this.espec = espec;

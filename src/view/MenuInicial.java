@@ -16,13 +16,13 @@ public class MenuInicial {
 
     public static int menuOpcoes() {
         int opcao;
-        String msg = "\nMenu Principal" +
-                    "\n1. Gerenciar Médicos" +
-                    "\n2. Gerenciar Pacientes" +
-                    "\n3. Gerencair Consultas" +
-                    "\n4. Gerenciar Prescrições (?)" +
-                    "\n0. Sair" +
-                    "\nEscolha uma opção => ";
+        String msg = "\n===>Menu Principal<===" +
+                     "\n1. Gerenciar Médicos" +
+                     "\n2. Gerenciar Pacientes" +
+                     "\n3. Gerencair Consultas" +
+                     "\n4. Gerenciar Prescrições (?)" +
+                     "\n0. Sair" +
+                     "\nEscolha uma opção => ";
 
         String strOpcao = JOptionPane.showInputDialog(msg);
             if(isInteger(strOpcao)){

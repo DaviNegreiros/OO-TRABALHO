@@ -5,14 +5,20 @@ import java.time.LocalDate;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
 import view.*;
-
+import cadastro.*;
 //compiler: javac -d ../out -sourcepath . Main.java classes/PessoaFisica.java classes/Medico.java NAO APAGUE
 
 
 public class Main {
+
+    //Instanciando objs de cadastro
+    static CadastroMedico cadMed;
+    static CadastroPaciente cadPac;
     
     public static void main(String[] args) {
-
+        //Referenciando objs de cadastro
+        cadMed = new CadastroMedico();
+        cadPac = new CadastroPaciente();
         
         // Declaração de medico1 fora do switch
         Medico medico1 = null;
@@ -28,24 +34,8 @@ public class Main {
                 case 1: 
                                      
 
-                    // Criando médico
-                    medico1 = new Medico("Dr Joao", "12345678900", LocalDate.parse("1975-02-14"), "CRM12345", "Cardiologista");
-                    
-                    // Exibindo dados do medico
-                    String msgTeste  = medico1.toString();
-                    JOptionPane.showMessageDialog(null, msgTeste);   
-                    break;
-                    case 2:
-                    // Criando paciente
-                    Paciente paciente1 = new Paciente("Maria Silva", "12345678901", LocalDate.parse("1990-05-22"));
-
-                    // Verificando o pagamento e lançando exceção se necessário
-                    try {
-                        paciente1.verificarPagamento(); 
-                        JOptionPane.showMessageDialog(null, "Paciente " + paciente1.getNome() + " não tem pagamento pendente.");
-                    } catch (PagamentoPendenteException e) {
-                        JOptionPane.showMessageDialog(null, e.getMessage());  
-                    }
+                    // Menu gerenciamento de alunos
+                    MenuMedico.menuMedico(cadMed);
                     break;
                 case 3:
                     // Testando horário indisponível

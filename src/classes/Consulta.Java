@@ -1,8 +1,8 @@
 package classes;
 
-import java.time.LocalDate;
 import exceptions.HorarioIndisponivelException;
 import exceptions.PagamentoPendenteException;
+import java.time.LocalDate;
 
 public class Consulta{
     //CRUD
@@ -26,6 +26,17 @@ public class Consulta{
         medicoAssociado = mA;
         exames = e;
         medicamentos = m;
+    }
+    
+    //Construtor provisório
+    public Consulta(LocalDate d, String h, String s, int mi, float v, Paciente pA, Medico mA){
+        data = d;
+        hora = h;
+        status = s;
+        min = mi;
+        valor = v;
+        pacienteAssociado = pA;
+        medicoAssociado = mA;
     }
     
     //void newConsulta(if pagamento){}
