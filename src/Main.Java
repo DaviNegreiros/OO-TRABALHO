@@ -1,26 +1,16 @@
 //main codar pra funcionar
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
-import java.time.LocalDate;
-import javax.swing.JOptionPane;
+import classes.*;
 import exceptions.*;
-
-
-import classes.*; // Importa todas as classes do pacote "classes"
+import java.time.LocalDate;
+import java.util.Scanner;
+import javax.swing.JOptionPane;
+import view.*;
 
 //compiler: javac -d ../out -sourcepath . Main.java classes/PessoaFisica.java classes/Medico.java NAO APAGUE
 
 
 public class Main {
-    public static boolean isInteger(String str) {
-        try {
-            Integer.parseInt(str);  // Tenta converter para inteiro
-            return true;  // Se não lançar exceção, é um inteiro
-        } catch (NumberFormatException e) {
-            return false;  // Se lançar exceção, não é um inteiro
-        }
-    }
+    
     public static void main(String[] args) {
 
         
@@ -31,19 +21,8 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
         int opcao;
-
-        String msg = "\nMenu Principal" +
-                    "\n1. Teste novo Médico" +
-                    "\n0. Sair" +
-                    "\nEscolha uma opção => ";
-        
-        while (true) {
-            String strOpcao = JOptionPane.showInputDialog(msg);
-            if(isInteger(strOpcao)){
-                opcao = Integer.parseInt(strOpcao); 
-            } else{
-                opcao = 1000; //deafault
-            }
+        while(true){
+        opcao = MenuInicial.menuOpcoes();
 
             switch (opcao) {
                 case 1: 
@@ -110,6 +89,6 @@ public class Main {
                 default:
                     System.out.println("Opção inválida! Tente novamente.");
             }
-        }
+        }}
     }
-}
+
