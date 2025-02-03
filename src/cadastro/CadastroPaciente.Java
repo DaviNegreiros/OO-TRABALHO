@@ -2,7 +2,6 @@ package cadastro;
 
 import classes.Paciente;
 import exceptions.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 

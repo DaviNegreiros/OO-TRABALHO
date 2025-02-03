@@ -6,14 +6,37 @@ import cadastro.CadastroPaciente;
 import exceptions.CampoEmBrancoException;
 import exceptions.CpfDuplicadoException; 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 public class MenuPaciente {
+    //verifica e retorna uma data valida
+    public static LocalDate obterDataValida() {
+        DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+        LocalDate dataDeNasc = null;
+        
+        while (dataDeNasc == null) {
+            String entrada = JOptionPane.showInputDialog(null, "Informe a data de nascimento (dd-mm-aaaa): ", "Data de nascimento", JOptionPane.QUESTION_MESSAGE);
+            
+            if (entrada == null) { // Usuário clicou em "Cancelar"
+                JOptionPane.showMessageDialog(null, "Operação cancelada.", "Cancelado", JOptionPane.INFORMATION_MESSAGE);
+                return null;
+            }
+
+            try {
+                dataDeNasc = LocalDate.parse(entrada, inputFormatter);
+            } catch (DateTimeParseException e) {
+                JOptionPane.showMessageDialog(null, "Formato inválido! Tente novamente.", "Erro", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        return dataDeNasc;
+    }
 
     // Coleta dados do usuário e cria um novo objeto Paciente
     public static Paciente dadosNovoPaciente() {
         String nome = lerNome();
         String cpf = lerCPF();
-        String nasc = lerNascimento();
+        LocalDate nasc = lerNascimento();
 
         /*
         try {
@@ -25,7 +48,7 @@ public class MenuPaciente {
             return null;
         }
         */
-        return new Paciente(nome, cpf, LocalDate.parse(nasc));
+        return new Paciente(nome, cpf, nasc);
     }
 
     // Solicita o nome do paciente ao usuário
@@ -39,8 +62,8 @@ public class MenuPaciente {
     }
 
     // Solicita a data de nascimento do paciente ao usuário
-    private static String lerNascimento() {
-        return JOptionPane.showInputDialog("Informe a data de nascimento do paciente (yyyy-mm-dd): ");
+    private static LocalDate lerNascimento() {
+        return obterDataValida();
     }
 
     // Exibe o menu de opções e realiza ações baseadas na escolha do usuário
