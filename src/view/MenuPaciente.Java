@@ -15,6 +15,7 @@ public class MenuPaciente {
         String cpf = lerCPF();
         String nasc = lerNascimento();
 
+        /*
         try {
             // Tenta criar um novo paciente e retorna o objeto
             return new Paciente(nome, cpf, LocalDate.parse(nasc));
@@ -23,6 +24,8 @@ public class MenuPaciente {
             JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
             return null;
         }
+        */
+        return new Paciente(nome, cpf, LocalDate.parse(nasc));
     }
 
     // Solicita o nome do paciente ao usuário
@@ -65,7 +68,7 @@ public class MenuPaciente {
                         } catch (CampoEmBrancoException e) {
                             JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
                         } catch (CpfDuplicadoException e) {
-                            JOptionPane.showMessageDialog(null, e.getMessage(), JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
                         }
                     }
                     break;

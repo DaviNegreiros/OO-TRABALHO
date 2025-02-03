@@ -1,11 +1,10 @@
 //main codar pra funcionar
+import cadastro.*;
 import classes.*;
 import exceptions.*;
-import java.time.LocalDate;
 import java.util.Scanner;
 import javax.swing.JOptionPane;
 import view.*;
-import cadastro.*;
 //compiler: javac -d ../out -sourcepath . Main.java classes/PessoaFisica.java classes/Medico.java NAO APAGUE
 
 
@@ -34,8 +33,12 @@ public class Main {
                 case 1: 
                                      
 
-                    // Menu gerenciamento de alunos
-                    MenuMedico.menuMedico(cadMed);
+                    // Menu gerenciamento de médicos
+                    //MenuMedico.menuMedico(cadMed);
+                    break;
+                case 2:
+                    //Menu gerenciamento de pacientes
+                    MenuPaciente.menuPaciente(cadPac);
                     break;
                 case 3:
                     // Testando horário indisponível
