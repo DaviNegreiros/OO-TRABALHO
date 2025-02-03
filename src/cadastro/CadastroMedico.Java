@@ -47,19 +47,21 @@ public class CadastroMedico {
     }
 
     // Método para atualizar médicos
-    public boolean atualizarMedico(String crm, Medico m) throws CampoEmBrancoException {
-        if (m == null) {
-            throw new CampoEmBrancoException("médico");
-        }
-        verificarCamposEmBranco(m);
-        for (int i = 0; i < medicos.size(); i++) {
-            if (medicos.get(i).getCrm().equalsIgnoreCase(crm)) {
-                medicos.set(i, m);
-                return true;
-            }
-        }
-        return false;
+    public boolean atualizarMedico(String crm, Medico m) throws CampoEmBrancoException, CpfDuplicadoException, CrmDuplicadoException {
+    if (m == null) {
+        throw new CampoEmBrancoException("médico");
     }
+    verificarCamposEmBranco(m);
+    verificarCpfDuplicado(m.getCpf());
+    verificarCrmDuplicado(m.getCrm());
+    for (int i = 0; i < medicos.size(); i++) {
+        if (medicos.get(i).getCrm().equalsIgnoreCase(crm)) {
+            medicos.set(i, m);
+            return true;
+        }
+    }
+    return false;
+}
 
     // Método para verificar campos em branco
     private void verificarCamposEmBranco(Medico m) throws CampoEmBrancoException {
