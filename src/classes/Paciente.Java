@@ -25,7 +25,7 @@ public class Paciente extends PessoaFisica{
 
 
     //Update
-    void setPagamentoPendente(boolean a){
+    public void setPagamentoPendente(boolean a){
         pagamentoPendente = a;
     }
     //setHist()

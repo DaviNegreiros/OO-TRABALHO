@@ -50,7 +50,7 @@ public class Main {
 
                     try {
                         
-                        boolean horarioDisponivel = medico1.isHorarioDisponivel(horario);
+                        boolean horarioDisponivel = true;
 
                         if (!horarioDisponivel) {
                             throw new HorarioIndisponivelException("O horário " + horario + " não está disponível.");
