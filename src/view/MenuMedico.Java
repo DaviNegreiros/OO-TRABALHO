@@ -1,16 +1,16 @@
 package view;
 
-import javax.swing.JOptionPane;
-import classes.Medico;
+import cadastro.CadastroMedico;
 import classes.Consulta;
 import classes.Exame;
-import cadastro.CadastroMedico;
+import classes.Medico;
 import exceptions.CampoEmBrancoException;
 import exceptions.CpfDuplicadoException;
 import exceptions.CrmDuplicadoException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import javax.swing.JOptionPane;
 
 public class MenuMedico {
 
@@ -22,6 +22,10 @@ public class MenuMedico {
         String crm = lerCRM();
         String espec = lerEspecialidade();
 
+        return new Medico(nome, cpf, LocalDate.parse(nasc), crm, espec);//caguei pro exception
+
+
+        /*
         try {
             // Tenta criar um novo médico e retorna o objeto
             return new Medico(nome, cpf, LocalDate.parse(nasc), crm, espec);
@@ -29,7 +33,8 @@ public class MenuMedico {
             // Exibe mensagem de erro se algum campo estiver em branco
             JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
             return null;
-        }
+        } 
+        */
     }
     //verifica e retorna uma data valida
     public static LocalDate obterDataValida() {

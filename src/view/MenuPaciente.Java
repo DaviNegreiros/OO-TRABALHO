@@ -1,35 +1,13 @@
 package view;
 
-import javax.swing.JOptionPane;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-import classes.*;
 import cadastro.*;
+import classes.*;
 import exceptions.*;
+import java.time.LocalDate;
+import javax.swing.JOptionPane;
 
 public class MenuPaciente {
-    //verifica e retorna uma data valida
-    public static LocalDate obterDataValida(String mensagemData) {
-        DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        LocalDate dataDeNasc = null;
-        
-        while (dataDeNasc == null) {
-            String entrada = JOptionPane.showInputDialog(null, mensagemData + " (dd-mm-aaaa): ", "Data de nascimento", JOptionPane.QUESTION_MESSAGE);
-            
-            if (entrada == null) { // Usuário clicou em "Cancelar"
-                JOptionPane.showMessageDialog(null, "Operação cancelada.", "Cancelado", JOptionPane.INFORMATION_MESSAGE);
-                return null;
-            }
-
-            try {
-                dataDeNasc = LocalDate.parse(entrada, inputFormatter);
-            } catch (DateTimeParseException e) {
-                JOptionPane.showMessageDialog(null, "Formato inválido! Tente novamente.", "Erro", JOptionPane.ERROR_MESSAGE);
-            }
-        }
-        return dataDeNasc;
-    }
+    
 
     // Coleta dados do usuário e cria um novo objeto Paciente
     
@@ -63,12 +41,12 @@ public class MenuPaciente {
 
     // Solicita o CPF do paciente ao usuário
     private static String lerCPF() {
-        return JOptionPane.showInputDialog("Informe o CPF do paciente: ");
+        return Validacoes.obterCpfValido();
     }
 
     // Solicita a data de nascimento do paciente ao usuário
     private static LocalDate lerNascimento() {
-        return obterDataValida("Informe a data de nascimento");
+        return Validacoes.obterDataValida("Informe a data de nascimento");
     }
 
     // Exibe o menu de opções e realiza ações baseadas na escolha do usuário

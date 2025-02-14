@@ -9,6 +9,8 @@ import view.*;
 
 
 public class Main {
+    
+     
 
     //Instanciando objs de cadastro
     static CadastroMedico cadMed;
