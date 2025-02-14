@@ -11,12 +11,12 @@ import java.time.format.DateTimeParseException;
 
 public class MenuPaciente {
     //verifica e retorna uma data valida
-    public static LocalDate obterDataValida() {
+    public static LocalDate obterDataValida(String mensagemData) {
         DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         LocalDate dataDeNasc = null;
         
         while (dataDeNasc == null) {
-            String entrada = JOptionPane.showInputDialog(null, "Informe a data de nascimento (dd-mm-aaaa): ", "Data de nascimento", JOptionPane.QUESTION_MESSAGE);
+            String entrada = JOptionPane.showInputDialog(null, mensagemData + " (dd-mm-aaaa): ", "Data de nascimento", JOptionPane.QUESTION_MESSAGE);
             
             if (entrada == null) { // Usuário clicou em "Cancelar"
                 JOptionPane.showMessageDialog(null, "Operação cancelada.", "Cancelado", JOptionPane.INFORMATION_MESSAGE);
@@ -63,7 +63,7 @@ public class MenuPaciente {
 
     // Solicita a data de nascimento do paciente ao usuário
     private static LocalDate lerNascimento() {
-        return obterDataValida();
+        return obterDataValida("Informe a data de nascimento");
     }
 
     // Exibe o menu de opções e realiza ações baseadas na escolha do usuário

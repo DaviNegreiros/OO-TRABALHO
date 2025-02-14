@@ -1,6 +1,6 @@
 package cadastro;
 
-import classes.Medico;
+import classes.*;
 import exceptions.*;
 import java.time.LocalDate;
 import java.util.ArrayList;

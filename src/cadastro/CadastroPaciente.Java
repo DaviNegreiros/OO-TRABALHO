@@ -1,6 +1,6 @@
 package cadastro;
 
-import classes.Paciente;
+import classes.*;
 import exceptions.*;
 import java.util.ArrayList;
 import java.util.List;
