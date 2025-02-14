@@ -20,7 +20,7 @@ public class MenuInicial {
                      "\n1. Gerenciar Médicos" +
                      "\n2. Gerenciar Pacientes" +
                      "\n3. Gerencair Consultas" +
-                     "\n4. Gerenciar Prescrições (?)" +
+                     "\n4. Gerenciar Exames" +
                      "\n0. Sair" +
                      "\nEscolha uma opção => ";
 

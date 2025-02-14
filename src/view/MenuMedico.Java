@@ -7,6 +7,7 @@ import classes.Medico;
 import exceptions.CampoEmBrancoException;
 import exceptions.CpfDuplicadoException;
 import exceptions.CrmDuplicadoException;
+import exceptions.EspecialidadeInvalidaException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -27,23 +28,41 @@ public class MenuMedico {
 
         /*
         try {
+            // Verifica se algum campo está em branco
+            if (nome == null || nome.trim().isEmpty()) {
+                throw new CampoEmBrancoException("nome");
+            }
+            if (cpf == null || cpf.trim().isEmpty()) {
+                throw new CampoEmBrancoException("CPF");
+            }
+            if (nasc == null || nasc.trim().isEmpty()) {
+                throw new CampoEmBrancoException("data de nascimento");
+            }
+            if (crm == null || crm.trim().isEmpty()) {
+                throw new CampoEmBrancoException("CRM");
+            }
+            if (espec == null || espec.trim().isEmpty()) {
+                throw new CampoEmBrancoException("especialidade");
+            }
+
             // Tenta criar um novo médico e retorna o objeto
             return new Medico(nome, cpf, LocalDate.parse(nasc), crm, espec);
-        } catch (CampoEmBrancoException e) {
-            // Exibe mensagem de erro se algum campo estiver em branco
+        } catch (CampoEmBrancoException | EspecialidadeInvalidaException e) {
+            // Exibe mensagem de erro se algum campo estiver em branco ou a especialidade for inválida
             JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
             return null;
         } 
         */
     }
-    //verifica e retorna uma data valida
+
+    // Verifica e retorna uma data válida
     public static LocalDate obterDataValida() {
         DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         LocalDate dataDaConsulta = null;
-        
+
         while (dataDaConsulta == null) {
             String entrada = JOptionPane.showInputDialog(null, "Informe a data da consulta (dd-mm-aaaa): ", "Data da consulta", JOptionPane.QUESTION_MESSAGE);
-            
+
             if (entrada == null) { // Usuário clicou em "Cancelar"
                 JOptionPane.showMessageDialog(null, "Operação cancelada.", "Cancelado", JOptionPane.INFORMATION_MESSAGE);
                 return null;
@@ -57,6 +76,7 @@ public class MenuMedico {
         }
         return dataDaConsulta;
     }
+
     // Solicita o nome do médico ao usuário
     private static String lerNome() {
         return JOptionPane.showInputDialog("Informe o nome do médico: ");
@@ -96,7 +116,12 @@ public class MenuMedico {
         int opcao = -1;
         do {
             String strOpcao = JOptionPane.showInputDialog(txt);
-            opcao = Integer.parseInt(strOpcao);
+            try {
+                opcao = Integer.parseInt(strOpcao);
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Opção inválida. Digite um número.", "Erro", JOptionPane.ERROR_MESSAGE);
+                continue;
+            }
 
             switch (opcao) {
                 case 1:
@@ -165,10 +190,6 @@ public class MenuMedico {
                         int minDaConsulta = Integer.parseInt(txtMinDaConsulta);
                         String txtValorDaConsulta = JOptionPane.showInputDialog("Informe o valor da consulta: ");
                         float valorDaConsulta = Float.parseFloat(txtValorDaConsulta);
-                        
-                        //Paciente pAssociadoDaConsulta = JOptionPane.showInputDialog("Informe o paciente da consulta: ");
-                        
-                        
 
                         Consulta consulta = new Consulta(dataConsultaLD, horarioDaConsulta, statusDaConsulta, minDaConsulta, valorDaConsulta, null, medicoConsulta);
                         medicoConsulta.adicionarConsulta(consulta);

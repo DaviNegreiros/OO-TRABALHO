@@ -15,11 +15,13 @@ public class Main {
     //Instanciando objs de cadastro
     static CadastroMedico cadMed;
     static CadastroPaciente cadPac;
+    static CadastroExame cadEx;
     
     public static void main(String[] args) {
         //Referenciando objs de cadastro
         cadMed = new CadastroMedico();
         cadPac = new CadastroPaciente();
+        cadEx = new CadastroExame();
         
         // Declaração de medico1 fora do switch
         Medico medico1 = null;
@@ -61,19 +63,8 @@ public class Main {
                     }
                     break;
                 case 4:
-                    
-                    try {
-                        String especialidade = "Oftalmologista";  // Especialidade inválida para testar
-
-                        if (!especialidade.equals("Cardiologista") && !especialidade.equals("Dermatologista")) {
-                            throw new EspecialidadeInvalidaException("Especialidade " + especialidade + " não é válida.");
-                        }
-
-                        JOptionPane.showMessageDialog(null, "Especialidade válida: " + especialidade);
-
-                    } catch (EspecialidadeInvalidaException e) {
-                        JOptionPane.showMessageDialog(null, e.getMessage());  
-                    }
+                    //Menu gerenciamento de exames
+                    MenuExame.menuExame(cadEx);
                     break;
                 case 0:
                     JOptionPane.showMessageDialog(null, "Saindo do programa...");   
