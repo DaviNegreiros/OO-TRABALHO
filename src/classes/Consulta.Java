@@ -4,110 +4,120 @@ import exceptions.HorarioIndisponivelException;
 import exceptions.PagamentoPendenteException;
 import java.time.LocalDate;
 
-public class Consulta{
-    //CRUD
-    LocalDate data;
-    String hora, status;
-    int min;
-    float valor;
-    Paciente pacienteAssociado;
-    Medico medicoAssociado;
-    Exame[] exames;
-    Medicamento[] medicamentos;
-    
-    //Métodos
-    Consulta(LocalDate d, String h, String s, int mi, float v, Paciente pA, Medico mA, Exame[] e, Medicamento[] m){
-        data = d;
-        hora = h;
-        status = s;
-        min = mi;
-        valor = v;
-        pacienteAssociado = pA;
-        medicoAssociado = mA;
-        exames = e;
-        medicamentos = m;
-    }
-    
-    //Construtor provisório
-    public Consulta(LocalDate d, String h, String s, int mi, float v, Paciente pA, Medico mA){
-        data = d;
-        hora = h;
-        status = s;
-        min = mi;
-        valor = v;
-        pacienteAssociado = pA;
-        medicoAssociado = mA;
-    }
-    
-    //void newConsulta(if pagamento){}
+public class Consulta {
+    // Atributos privados
+    private LocalDate data;
+    private String hora;
+    private String status;
+    private int min;
+    private float valor;
+    private Paciente pacienteAssociado;
+    private Medico medicoAssociado;
+    private Exame[] exames;
+    private Medicamento[] medicamentos;
 
-    //Read
-    LocalDate getData(){
+    // Construtor completo
+    public Consulta(LocalDate d, String h, String s, int mi, float v, Paciente pA, Medico mA, Exame[] e, Medicamento[] m) {
+        this.data = d;
+        this.hora = h;
+        this.status = s;
+        this.min = mi;
+        this.valor = v;
+        this.pacienteAssociado = pA;
+        this.medicoAssociado = mA;
+        this.exames = e;
+        this.medicamentos = m;
+    }
+
+    // Construtor provisório
+    public Consulta(LocalDate d, String h, String s, int mi, float v, Paciente pA, Medico mA) {
+        this(d, h, s, mi, v, pA, mA, new Exame[0], new Medicamento[0]); // Inicializa arrays vazios
+    }
+
+    // Métodos get (públicos)
+    public LocalDate getData() {
         return data;
     }
-    String getHora(){
+
+    public String getHora() {
         return hora;
     }
-    String getStatus(){
+
+    public String getStatus() {
         return status;
     }
-    int getMin(){
+
+    public int getMin() {
         return min;
     }
-    float getValor(){
+
+    public float getValor() {
         return valor;
     }
-    Paciente getPacienteAssociado(){
+
+    public Paciente getPacienteAssociado() {
         return pacienteAssociado;
     }
-    Medico getMedicoAssociado(){
+
+    public Medico getMedicoAssociado() {
         return medicoAssociado;
     }
-    Exame[] getExames(){
+
+    public Exame[] getExames() {
         return exames;
     }
-    Medicamento[] getMedicamentos(){
+
+    public Medicamento[] getMedicamentos() {
         return medicamentos;
     }
 
-    //Uptade
-    void setData(LocalDate a){
-        data = a;
+    // Métodos set (públicos)
+    public void setData(LocalDate a) {
+        this.data = a;
     }
-    void setHora(String a){
-        hora = a;
+
+    public void setHora(String a) {
+        this.hora = a;
     }
-    void setStatus(String a){
-        status = a;
+
+    public void setStatus(String a) {
+        this.status = a;
     }
-    void setMin (int a){
-        min = a;
+
+    public void setMin(int a) {
+        this.min = a;
     }
-    void setValor(float a){
-        valor = a;
+
+    public void setValor(float a) {
+        this.valor = a;
     }
-    void setPacienteAssociado(Paciente a){
-        pacienteAssociado = a;
+
+    public void setPacienteAssociado(Paciente a) {
+        this.pacienteAssociado = a;
     }
-    void setMedicoAssociado(Medico a){
-        medicoAssociado = a;
+
+    public void setMedicoAssociado(Medico a) {
+        this.medicoAssociado = a;
     }
-    void setExames(Exame[] a){
-        exames = a;
+
+    public void setExames(Exame[] a) {
+        this.exames = a;
     }
-    void setMedicamentos(Medicamento[] a){
-        medicamentos = a;
+
+    public void setMedicamentos(Medicamento[] a) {
+        this.medicamentos = a;
     }
+
+    // Método para agendar consulta
     public void agendarConsulta() throws HorarioIndisponivelException, PagamentoPendenteException {
-        if (pacienteAssociado.getPagamentoPendente()) { 
+        if (pacienteAssociado.getPagamentoPendente()) {
             throw new PagamentoPendenteException("Consulta não pode ser agendada. O paciente possui pagamentos pendentes.");
         }
-    
+
         if (medicoAssociado.horarioOcupado(data, hora)) {
             throw new HorarioIndisponivelException("O médico já tem uma consulta agendada neste horário.");
         }
-        status = "Confirmada";  
+        status = "Confirmada";
         System.out.println("Consulta agendada com sucesso para " + data + " às " + hora);
     }
-
 }
