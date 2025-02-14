@@ -3,6 +3,7 @@ package classes;
 import exceptions.PagamentoPendenteException;
 import java.time.LocalDate;
 
+
 public class Paciente extends PessoaFisica{
     //nome cpf data hist
     boolean pagamentoPendente;

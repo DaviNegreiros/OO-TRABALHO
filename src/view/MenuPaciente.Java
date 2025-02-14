@@ -1,13 +1,12 @@
 package view;
 
 import javax.swing.JOptionPane;
-import classes.Paciente;
-import cadastro.CadastroPaciente;
-import exceptions.CampoEmBrancoException;
-import exceptions.CpfDuplicadoException; 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
+import classes.*;
+import cadastro.*;
+import exceptions.*;
 
 public class MenuPaciente {
     //verifica e retorna uma data valida
@@ -33,27 +32,33 @@ public class MenuPaciente {
     }
 
     // Coleta dados do usuário e cria um novo objeto Paciente
+    
     public static Paciente dadosNovoPaciente() {
+
+    
+        try {
         String nome = lerNome();
         String cpf = lerCPF();
         LocalDate nasc = lerNascimento();
-
-        /*
-        try {
             // Tenta criar um novo paciente e retorna o objeto
-            return new Paciente(nome, cpf, LocalDate.parse(nasc));
+            return new Paciente(nome, cpf, nasc);
+
         } catch (CampoEmBrancoException e) {
             // Exibe mensagem de erro se algum campo estiver em branco
             JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
             return null;
+            
         }
-        */
-        return new Paciente(nome, cpf, nasc);
+    
     }
 
     // Solicita o nome do paciente ao usuário
-    private static String lerNome() {
-        return JOptionPane.showInputDialog("Informe o nome do paciente: ");
+    private static String lerNome() throws CampoEmBrancoException {
+        String nome = JOptionPane.showInputDialog("Informe o nome do paciente: ");
+        if (nome == null || nome.trim().isEmpty()) {
+            throw new CampoEmBrancoException("O nome não pode estar em branco!");
+        }
+        return nome;
     }
 
     // Solicita o CPF do paciente ao usuário
