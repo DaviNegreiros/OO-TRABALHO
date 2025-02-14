@@ -50,7 +50,6 @@ public class CadastroPaciente {
     }
 
     // Método para atualizar pacientes
-    // Método atualizado para manter o histórico médico ao atualizar o paciente
     public boolean atualizarPaciente(String cpf, Paciente novoPaciente) throws CampoEmBrancoException {
         if (novoPaciente == null) {
             throw new CampoEmBrancoException("paciente");
@@ -110,7 +109,6 @@ public class CadastroPaciente {
         if (p.getCpf() == null || p.getCpf().trim().isEmpty()) {
             throw new CampoEmBrancoException("CPF");
         }
-        // Verifica se o CPF está no formato certo
         if (!p.getCpf().matches("\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}")) {
             throw new CampoEmBrancoException("CPF deve estar no formato XXX.XXX.XXX-XX.");
         }
