@@ -16,12 +16,14 @@ public class Main {
     static CadastroMedico cadMed;
     static CadastroPaciente cadPac;
     static CadastroExame cadEx;
+    static CadastroConsulta cadCon;
     
     public static void main(String[] args) {
         //Referenciando objs de cadastro
         cadMed = new CadastroMedico();
         cadPac = new CadastroPaciente();
         cadEx = new CadastroExame();
+        cadCon = new CadastroConsulta();
         
         // Declaração de medico1 fora do switch
         Medico medico1 = null;
@@ -45,22 +47,7 @@ public class Main {
                     MenuPaciente.menuPaciente(cadPac);
                     break;
                 case 3:
-                    // Testando horário indisponível
-                    String horario = "14:00";  
-
-                    try {
-                        
-                        boolean horarioDisponivel = true;
-
-                        if (!horarioDisponivel) {
-                            throw new HorarioIndisponivelException("O horário " + horario + " não está disponível.");
-                        }
-
-                        JOptionPane.showMessageDialog(null, "Horário disponível: " + horario);
-
-                    } catch (HorarioIndisponivelException e) {
-                        JOptionPane.showMessageDialog(null, e.getMessage());  
-                    }
+                    MenuConsulta.menuConsulta(cadCon);
                     break;
                 case 4:
                     //Menu gerenciamento de exames
