@@ -25,7 +25,7 @@ public class CadastroPaciente {
             throw new CpfDuplicadoException("CPF já cadastrado."); // Lança a exceção CpfDuplicadoException
         }
         // Inicializa o histórico médico como uma lista vazia no momento do cadastro
-        p.setHistoricoMedico(new ArrayList<>());
+        //p.setHistoricoMedico(new ArrayList<>());
 
         pacientes.add(p);
         return pacientes.size();
@@ -56,7 +56,7 @@ public class CadastroPaciente {
         }
         verificarCamposEmBranco(novoPaciente);
 
-        for (Paciente p : pacientes) {
+       /* for (Paciente p : pacientes) {
             if (p.getCpf().equalsIgnoreCase(cpf)) {
                 // Mantém o histórico do paciente antes de substituir os dados
                 List<Object> historico = p.getHistoricoMedico();
@@ -66,11 +66,11 @@ public class CadastroPaciente {
                 pacientes.set(pacientes.indexOf(p), novoPaciente);
                 return true;
             }
-        }
+        }*/
         return false;
     }
 
-    // Novo método para adicionar uma consulta ao histórico de um paciente
+    /* Novo método para adicionar uma consulta ao histórico de um paciente
     public boolean adicionarConsulta(String cpf, Consulta consulta) {
         for (Paciente p : pacientes) {
             if (p.getCpf().equalsIgnoreCase(cpf)) {
@@ -90,7 +90,7 @@ public class CadastroPaciente {
             }
         }
         return false;
-    }
+    }*/
     // Método para verificar se o CPF já está cadastrado
     private boolean cpfJaCadastrado(String cpf) {
         for (Paciente p : pacientes) {

@@ -25,7 +25,7 @@ public class CadastroMedico {
         verificarCpfDuplicado(m.getCpf());
         verificarCrmDuplicado(m.getCrm());
 
-        m.setHistoricoMedico(new ArrayList<>());
+       // m.setHistoricoMedico(new ArrayList<>());
 
         medicos.add(m);
         return medicos.size();
@@ -56,7 +56,7 @@ public class CadastroMedico {
         }
         verificarCamposEmBranco(novoMedico);
 
-        for (Medico m : medicos) {
+       /*  for (Medico m : medicos) {
             if (m.getCrm().equalsIgnoreCase(crm)) {
                 List<Object> historico = m.getHistoricoMedico();
                 novoMedico.setHistoricoMedico(historico);
@@ -64,10 +64,10 @@ public class CadastroMedico {
                 medicos.set(medicos.indexOf(m), novoMedico);
                 return true;
             }
-        }
+        }*/
         return false;
     }
-    // Método para adicionar uma consulta ao histórico de um médico
+    /* Método para adicionar uma consulta ao histórico de um médico
     public boolean adicionarConsulta(String crm, Consulta consulta) {
         for (Medico m : medicos) {
             if (m.getCrm().equalsIgnoreCase(crm)) {
@@ -76,7 +76,7 @@ public class CadastroMedico {
             }
         }
         return false;
-    }
+    } 
 
     // Método para adicionar um exame ao histórico de um médico
     public boolean adicionarExame(String crm, Exame exame) {
@@ -87,7 +87,7 @@ public class CadastroMedico {
             }
         }
         return false;
-    }
+    } */
 
 
     // Método para verificar campos em branco

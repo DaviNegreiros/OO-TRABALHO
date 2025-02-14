@@ -1,5 +1,6 @@
 package classes;
 
+import classes.*;
 import exceptions.EspecialidadeInvalidaException;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -13,15 +14,13 @@ public class Medico extends PessoaFisica {
     private List<Exame> exames; // Histórico de exames
 
     // Construtor
-    public Medico(String nome, String cpf, LocalDate nasc, String crm, String espec) {
-        
+    public Medico(String nome, String cpf, LocalDate nasc, String crm, String espec) throws EspecialidadeInvalidaException {
         super(nome, cpf, nasc);
         this.crm = crm;
+        validarEspecialidade(espec); // Valida a especialidade antes de atribuir
         this.espec = espec;
         this.consultas = new ArrayList<>();
         this.exames = new ArrayList<>();
-        //validarEspecialidade(espec); isso não deve ser chamado aqui, mas sim antes do construtor
-        
     }
 
     // Métodos de acesso (Getters)
@@ -42,7 +41,8 @@ public class Medico extends PessoaFisica {
     }
 
     // Métodos de modificação (Setters)
-    public void setEspec(String espec) {
+    public void setEspec(String espec) throws EspecialidadeInvalidaException {
+        validarEspecialidade(espec); // Valida a especialidade antes de atribuir
         this.espec = espec;
     }
 
@@ -71,23 +71,30 @@ public class Medico extends PessoaFisica {
         if (!cpf.matches("\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}")) {
             throw new IllegalArgumentException("CPF deve estar no formato XXX.XXX.XXX-XX.");
         }
+        // Verifica se todos os dígitos são iguais (CPF inválido)
+        if (cpf.matches("(\\d)\\1{10}")) {
+            throw new IllegalArgumentException("CPF inválido.");
+        }
         super.setCpf(cpf);
     }
 
     // Método toString para exibir informações do médico
     @Override
     public String toString() {
-        return "Nome: " + getNome() + "\n" +
-               "CPF: " + getCpf() + "\n" +
-               "Data de Nascimento: " + getNasc() + "\n" +
-               "CRM: " + crm + "\n" +
-               "Especialidade: " + espec + "\n" +
-               "Consultas: " + consultas.size() + "\n" +
-               "Exames: " + exames.size() + "\n";
+        return "Médico:\n" +
+               "  Nome: " + getNome() + "\n" +
+               "  CPF: " + getCpf() + "\n" +
+               "  Data de Nascimento: " + getNasc() + "\n" +
+               "  CRM: " + crm + "\n" +
+               "  Especialidade: " + espec + "\n" +
+               "  Consultas: " + consultas.size() + "\n" +
+               "  Exames: " + exames.size() + "\n";
     }
+
+    // Método para validar especialidade
     public void validarEspecialidade(String espec) throws EspecialidadeInvalidaException {
         String[] especialidadesValidas = {"Cardiologia", "Ortopedia", "Dermatologia", "Pediatria", "Neurologia"};
-    
+
         boolean especialidadeValida = false;
         for (String especialidade : especialidadesValidas) {
             if (especialidade.equalsIgnoreCase(espec)) {
@@ -95,40 +102,19 @@ public class Medico extends PessoaFisica {
                 break;
             }
         }
-    
+
         if (!especialidadeValida) {
             throw new EspecialidadeInvalidaException("Especialidade inválida: " + espec);
         }
-    
-
-
     }
 
-
-
-
-
-
+    // Método para verificar se o horário está ocupado
     public boolean horarioOcupado(LocalDate data, String hora) {
-        // Lógica para verificar se o horário está ocupado
-        return false; // Modifique conforme necessário
-    }
-    // Método para verificar disponibilidade do horário
-    public boolean isHorarioDisponivel(String horario) {
-        // Lógica para verificar se o horário está disponível
-        // Aqui é apenas um exemplo. Implemente conforme o necessário.
-        // Por exemplo, verificar se o médico já tem consulta marcada no horário.
-        return !horario.equals("14:00");  // Exemplo simples: horário 14:00 não disponível
+        for (Consulta consulta : consultas) {
+            if (consulta.getData().equals(data) && consulta.getHora().equals(hora)) {
+                return true; // Horário ocupado
+            }
+        }
+        return false; // Horário disponível
     }
 }
-
-
-
-    
-
-
-
-
-
-
-
