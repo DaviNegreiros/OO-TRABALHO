@@ -18,19 +18,19 @@ public class Exame{
     }
 
     //Read aa
-    String getTipo(){
+    public String getTipo(){
         return tipo;
     }
-    String getResultado(){
+    public String getResultado(){
         return resultado;
     }
-    LocalDate getDataPrescricao(){
+    public LocalDate getDataPrescricao(){
         return dataPrescricao;
     }
-    LocalDate getRealizacao(){
+    public LocalDate getRealizacao(){
         return dataRealizacao;
     }
-    float getValor(){
+    public float getValor(){
         return valor;
     }
 
