@@ -24,6 +24,9 @@ public class CadastroMedico {
         verificarCamposEmBranco(m);
         verificarCpfDuplicado(m.getCpf());
         verificarCrmDuplicado(m.getCrm());
+
+        m.setHistoricoMedico(new ArrayList<>());
+
         medicos.add(m);
         return medicos.size();
     }
@@ -47,21 +50,45 @@ public class CadastroMedico {
     }
 
     // Método para atualizar médicos
-    public boolean atualizarMedico(String crm, Medico m) throws CampoEmBrancoException, CpfDuplicadoException, CrmDuplicadoException {
-    if (m == null) {
-        throw new CampoEmBrancoException("médico");
-    }
-    verificarCamposEmBranco(m);
-    verificarCpfDuplicado(m.getCpf());
-    verificarCrmDuplicado(m.getCrm());
-    for (int i = 0; i < medicos.size(); i++) {
-        if (medicos.get(i).getCrm().equalsIgnoreCase(crm)) {
-            medicos.set(i, m);
-            return true;
+     public boolean atualizarMedico(String crm, Medico novoMedico) throws CampoEmBrancoException {
+        if (novoMedico == null) {
+            throw new CampoEmBrancoException("médico");
         }
+        verificarCamposEmBranco(novoMedico);
+
+        for (Medico m : medicos) {
+            if (m.getCrm().equalsIgnoreCase(crm)) {
+                List<Object> historico = m.getHistoricoMedico();
+                novoMedico.setHistoricoMedico(historico);
+
+                medicos.set(medicos.indexOf(m), novoMedico);
+                return true;
+            }
+        }
+        return false;
     }
-    return false;
-}
+    // Método para adicionar uma consulta ao histórico de um médico
+    public boolean adicionarConsulta(String crm, Consulta consulta) {
+        for (Medico m : medicos) {
+            if (m.getCrm().equalsIgnoreCase(crm)) {
+                m.getHistoricoMedico().add(consulta);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    // Método para adicionar um exame ao histórico de um médico
+    public boolean adicionarExame(String crm, Exame exame) {
+        for (Medico m : medicos) {
+            if (m.getCrm().equalsIgnoreCase(crm)) {
+                m.getHistoricoMedico().add(exame);
+                return true;
+            }
+        }
+        return false;
+    }
+
 
     // Método para verificar campos em branco
     private void verificarCamposEmBranco(Medico m) throws CampoEmBrancoException {
@@ -74,6 +101,9 @@ public class CadastroMedico {
         if (!m.getCpf().matches("\\d{3}\\.\\d{3}\\.\\d{3}-\\d{2}")) {
             throw new CampoEmBrancoException("CPF deve estar no formato XXX.XXX.XXX-XX.");
         }
+        if (m.getNasc() == null) { // 🔹 Adicionada verificação de data de nascimento
+            throw new CampoEmBrancoException("data de nascimento");
+        }
         if (m.getCrm() == null || m.getCrm().trim().isEmpty()) {
             throw new CampoEmBrancoException("CRM");
         }
@@ -81,6 +111,7 @@ public class CadastroMedico {
             throw new CampoEmBrancoException("especialização");
         }
     }
+
 
     // Método para verificar CPF duplicado
     private void verificarCpfDuplicado(String cpf) throws CpfDuplicadoException {
