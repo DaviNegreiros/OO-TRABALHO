@@ -32,19 +32,6 @@ Collections (List, ArrayList) → Armazenamento e manipulação de dados.
 📁 view/ → Menus e interface com o usuário.
 📄 Main.java → Executa o sistema.
 
-🔧 Como Executar o Projeto
-
-1️⃣ Clone o repositório:
-
- git clone https://github.com/seu-usuario/sistema-gestao-medica.git
-
-2️⃣ Compile os arquivos Java:
-
- javac -d bin -sourcepath src src/Main.java
-
-3️⃣ Execute o programa:
-
- java -cp bin Main
 
 📌 Autores
 
