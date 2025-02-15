@@ -40,7 +40,7 @@ public class Main {
                                      
 
                     // Menu gerenciamento de médicos
-                    //MenuMedico.menuMedico(cadMed);
+                    MenuMedico.menuMedico(cadMed);
                     break;
                 case 2:
                     //Menu gerenciamento de pacientes
