@@ -3,6 +3,8 @@ package classes;
 import exceptions.HorarioIndisponivelException;
 import exceptions.PagamentoPendenteException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
 
 public class Consulta {
     // Atributos privados
@@ -15,6 +17,24 @@ public class Consulta {
     private Medico medicoAssociado;
     private Exame[] exames;
     private Medicamento[] medicamentos;
+
+
+    //Métodos
+    @Override
+    public String toString() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        return "Consulta{" +
+                "\n data = " + data.format(formatter) +
+                "\n hora = " + hora + 
+                "\n status = " + status +
+                "\n min = " + min +
+                "\n valor = " + valor +
+                "\n pacienteAssociado = " + (pacienteAssociado != null ? pacienteAssociado.toString() : "null") +
+                "\n medicoAssociado = " + (medicoAssociado != null ? medicoAssociado.toString() : "null") +
+                "\n exames = " + (exames != null ? Arrays.toString(exames) : "null") +
+                "\n medicamentos =" + (medicamentos != null ? Arrays.toString(medicamentos) : "null") +
+                '}';
+    }
 
     // Construtor completo
     public Consulta(LocalDate d, String h, String s, int mi, float v, Paciente pA, Medico mA, Exame[] e, Medicamento[] m) {

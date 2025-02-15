@@ -1,6 +1,7 @@
 package classes;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class Exame{
     String tipo, resultado;
@@ -9,6 +10,19 @@ public class Exame{
 
 
     //Métodos
+    @Override
+    public String toString() {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        return "Exame{\n" +
+                "tipo = " + tipo + '\n' +
+                " resultado = " + resultado + '\n' +
+                " dataPrescricao = " + dataPrescricao.format(formatter) + "\n" +
+                " dataRealizacao = " + dataRealizacao.format(formatter) + "\n" +
+                " valor = " + valor +
+                '}';
+    }
+
+
     public Exame (String t, String r, LocalDate dP, LocalDate dR,float v){
         tipo = t;
         resultado = r;
