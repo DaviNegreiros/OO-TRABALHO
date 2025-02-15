@@ -10,36 +10,15 @@ import exceptions.*;
 
 public class MenuExame {
     
-    // Verifica e retorna uma data válida
-    public static LocalDate obterDataValida(String mensagemData) {
-        DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        LocalDate data = null;
-        
-        while (data == null) {
-            String entrada = JOptionPane.showInputDialog(null, mensagemData + " (dd-mm-aaaa): ", "Data", JOptionPane.QUESTION_MESSAGE);
-            
-            if (entrada == null) {
-                JOptionPane.showMessageDialog(null, "Operação cancelada.", "Cancelado", JOptionPane.INFORMATION_MESSAGE);
-                return null;
-            }
-
-            try {
-                data = LocalDate.parse(entrada, inputFormatter);
-            } catch (DateTimeParseException e) {
-                JOptionPane.showMessageDialog(null, "Formato inválido! Tente novamente.", "Erro", JOptionPane.ERROR_MESSAGE);
-            }
-        }
-        return data;
-    }
-
+   
     // Coleta dados do usuário e cria um novo objeto Exame
     public static Exame dadosNovoExame() {
         try {
             String tipo = lerTipo();
             String resultado = lerResultado();
-            LocalDate dataPrescricao = obterDataValida("Informe a data de prescrição");
-            LocalDate dataRealizacao = obterDataValida("Informe a data de realização");
-            float valor = lerValor();
+            LocalDate dataPrescricao = Validacoes.obterDataValida("Informe a data de prescrição");
+            LocalDate dataRealizacao = Validacoes.obterDataValida("Informe a data de realização");
+            float valor = Validacoes.obterValorValido();
             return new Exame(tipo, resultado, dataPrescricao, dataRealizacao, valor);
         } catch (CampoEmBrancoException e) {
             JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);

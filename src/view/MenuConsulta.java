@@ -11,32 +11,11 @@ import java.util.List;
 
 public class MenuConsulta {
 
-    // Verifica e retorna uma data válida
-    public static LocalDate obterDataValida(String mensagemData) {
-        DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-        LocalDate data = null;
-
-        while (data == null) {
-            String entrada = JOptionPane.showInputDialog(null, mensagemData + " (dd-mm-aaaa): ", "Data", JOptionPane.QUESTION_MESSAGE);
-
-            if (entrada == null) { // Usuário clicou em "Cancelar"
-                JOptionPane.showMessageDialog(null, "Operação cancelada.", "Cancelado", JOptionPane.INFORMATION_MESSAGE);
-                return null;
-            }
-
-            try {
-                data = LocalDate.parse(entrada, inputFormatter);
-            } catch (DateTimeParseException e) {
-                JOptionPane.showMessageDialog(null, "Formato inválido! Tente novamente.", "Erro", JOptionPane.ERROR_MESSAGE);
-            }
-        }
-        return data;
-    }
 
     // Coleta dados do usuário e cria um novo objeto Consulta
     public static Consulta dadosNovaConsulta() {
         try {
-            LocalDate data = obterDataValida("Informe a data da consulta");
+            LocalDate data = Validacoes.obterDataValida("Informe a data da consulta");
             String hora = JOptionPane.showInputDialog("Informe o horário da consulta: ");
             String status = JOptionPane.showInputDialog("Informe o status da consulta: ");
             int min = Integer.parseInt(JOptionPane.showInputDialog("Informe a duração da consulta em minutos: "));
@@ -96,7 +75,7 @@ public class MenuConsulta {
                     break;
 
                 case 2:
-                    LocalDate dataConsulta = obterDataValida("Informe a data da consulta para pesquisa");
+                    LocalDate dataConsulta = Validacoes.obterDataValida("Informe a data da consulta para pesquisa");
                     String horaConsulta = JOptionPane.showInputDialog("Informe o horário da consulta: ");
                     List<Consulta> consultasEncontradas = cadConsulta.buscarConsultasPorDataHora(dataConsulta, horaConsulta);
                     if (!consultasEncontradas.isEmpty()) {
@@ -111,7 +90,7 @@ public class MenuConsulta {
                     break;
 
                 case 3:
-                    LocalDate dataAtualizar = obterDataValida("Informe a data da consulta para atualização");
+                    LocalDate dataAtualizar = Validacoes.obterDataValida("Informe a data da consulta para atualização");
                     String horaAtualizar = JOptionPane.showInputDialog("Informe o horário da consulta: ");
                     Consulta consultaAtualizar = cadConsulta.buscarConsultaPorDataHora(dataAtualizar, horaAtualizar);
                     if (consultaAtualizar != null) {
@@ -130,7 +109,7 @@ public class MenuConsulta {
                     break;
 
                 case 4:
-                    LocalDate dataRemover = obterDataValida("Informe a data da consulta para remoção");
+                    LocalDate dataRemover = Validacoes.obterDataValida("Informe a data da consulta para remoção");
                     String horaRemover = JOptionPane.showInputDialog("Informe o horário da consulta: ");
                     Consulta consultaRemover = cadConsulta.buscarConsultaPorDataHora(dataRemover, horaRemover);
                     if (consultaRemover != null) {
@@ -143,7 +122,7 @@ public class MenuConsulta {
 
                 case 5:
                     // Adicionar exame à consulta
-                    LocalDate dataExame = obterDataValida("Informe a data da consulta para adicionar exame");
+                    LocalDate dataExame = Validacoes.obterDataValida("Informe a data da consulta para adicionar exame");
                     String horaExame = JOptionPane.showInputDialog("Informe o horário da consulta: ");
                     Consulta consultaExame = cadConsulta.buscarConsultaPorDataHora(dataExame, horaExame);
                     if (consultaExame != null) {
@@ -163,8 +142,8 @@ public class MenuConsulta {
 
                 case 6:
                     // Adicionar medicamento à consulta
-                    LocalDate dataMedicamento = obterDataValida("Informe a data da consulta para adicionar medicamento");
-                    String horaMedicamento = JOptionPane.showInputDialog("Informe o horário da consulta: ");
+                    LocalDate dataMedicamento = Validacoes.obterDataValida("Informe a data da consulta para adicionar medicamento");
+                    String horaMedicamento = Validacoes.obterHorarioValido();
                     Consulta consultaMedicamento = cadConsulta.buscarConsultaPorDataHora(dataMedicamento, horaMedicamento);
                     if (consultaMedicamento != null) {
                         String nomeMedicamento = JOptionPane.showInputDialog("Informe o nome do medicamento: ");
