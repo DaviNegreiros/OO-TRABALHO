@@ -1,118 +1,36 @@
 🏥 Sistema de Gestão Médica
 
-Este projeto é um sistema de gestão médica desenvolvido em Java, utilizando O.O. (Orientadação a Objetos). Ele permite o cadastro, gerenciamento e controle de médicos, pacientes, consultas, exames e prescrições médicas, além da implementação de um sistema de pagamentos.
+Este projeto é um sistema de gestão médica desenvolvido em Java, utilizando O.O. (Orientação a Objetos). Ele permite o cadastro, gerenciamento e controle de médicos, pacientes, consultas, exames e prescrições médicas, além da implementação de um sistema de pagamentos.
 
 🚀 Funcionalidades
 
-📌 Gestão de Pacientes
+Cadastro e gerenciamento de pacientes, médicos, consultas e exames.
 
-Cadastro, atualização, remoção e pesquisa de pacientes.
+Validação de especialidades médicas e horários disponíveis.
 
-Verificação e controle de pagamentos pendentes.
+Pagamentos pendentes bloqueiam agendamentos.
 
-Pacientes só podem agendar consultas se não possuírem pendências financeiras.
+Cada consulta e exame tem um valor associado.
 
-📌 Gestão de Médicos
-
-Cadastro, atualização, remoção e pesquisa de médicos.
-
-Validação de especialidade médica antes do cadastro.
-
-Controle de horários disponíveis para consultas.
-
-📌 Gestão de Consultas
-
-Agendamento e gerenciamento de consultas médicas.
-
-Cada consulta tem um valor associado.
-
-Validação de disponibilidade do médico no horário solicitado.
-
-Pacientes com pagamentos pendentes não podem agendar novas consultas.
-
-📌 Gestão de Exames
-
-Cadastro, atualização, remoção e pesquisa de exames.
-
-Associação de exames a pacientes e médicos.
-
-Exames possuem data de prescrição, data de realização e um valor associado.
-
-📌 Prescrições Médicas
-
-Geração de prescrições médicas associadas a uma consulta.
-
-Registro de exames e medicamentos prescritos.
-
-📌 Sistema de Pagamentos
-
-Cada consulta e exame possui um valor associado.
-
-Pacientes podem quitar seus pagamentos pendentes.
-
-Bloqueio de novos agendamentos para pacientes com pagamentos pendentes.
+Geração de prescrições médicas com exames e medicamentos.
 
 🛠️ Tecnologias Utilizadas
 
 Java → Linguagem principal do projeto.
 
-POO (Programação Orientada a Objetos) → Organização e estruturação do código.
+O.O. (Orientação a Objetos) → Estruturação do código.
 
-JOptionPane (Swing) → Interface gráfica para entrada e saída de dados.
+JOptionPane (Swing) → Interface gráfica simples.
 
 Collections (List, ArrayList) → Armazenamento e manipulação de dados.
 
 📂 Estrutura do Projeto
 
-📁 classes/ → Contém todas as classes do sistema.
-
-Paciente.java → Gerencia pacientes e pagamentos pendentes.
-
-Medico.java → Gerencia médicos e especialidades.
-
-Consulta.java → Controla o agendamento e pagamento de consultas.
-
-Exame.java → Gerencia exames médicos.
-
-Prescricao.java → Controla a prescrição de medicamentos e exames.
-
-📁 cadastro/ → Contém os gerenciadores de cadastros.
-
-CadastroPaciente.java → Gerencia o cadastro de pacientes.
-
-CadastroMedico.java → Gerencia o cadastro de médicos.
-
-CadastroConsulta.java → Controla as consultas agendadas.
-
-CadastroExame.java → Controla os exames médicos.
-
-📁 exceptions/ → Contém as exceções personalizadas.
-
-CampoEmBrancoException.java → Lançada quando um campo obrigatório está vazio.
-
-CpfDuplicadoException.java → Lançada quando um CPF já cadastrado é inserido.
-
-CrmDuplicadoException.java → Lançada quando um CRM já cadastrado é inserido.
-
-EspecialidadeInvalidaException.java → Lançada quando uma especialidade inválida é inserida.
-
-HorarioIndisponivelException.java → Lançada quando um médico não está disponível no horário solicitado.
-
-PagamentoPendenteException.java → Lançada quando um paciente tenta agendar com pagamentos pendentes.
-
-📁 view/ → Contém os menus de interação com o usuário.
-
-MenuInicial.java → Menu principal do sistema.
-
-MenuPaciente.java → Menu de gerenciamento de pacientes.
-
-MenuMedico.java → Menu de gerenciamento de médicos.
-
-MenuConsulta.java → Menu de gerenciamento de consultas.
-
-MenuExame.java → Menu de gerenciamento de exames.
-
-📄 Main.java → Arquivo principal que executa o sistema.
+📁 classes/ → Lógica do sistema.
+📁 cadastro/ → Gerenciamento de registros.
+📁 exceptions/ → Tratamento de erros personalizados.
+📁 view/ → Menus e interface com o usuário.
+📄 Main.java → Executa o sistema.
 
 🔧 Como Executar o Projeto
 
@@ -136,4 +54,3 @@ Guilherme Negreiros Pereira - 232014001
 Davi Monteiro de Negreiros - 232013971
 
 Se gostou do projeto, deixe uma ⭐ no repositório! 😊
-
