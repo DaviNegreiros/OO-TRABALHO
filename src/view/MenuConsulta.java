@@ -41,7 +41,7 @@ public class MenuConsulta {
     }
 
     // Exibe o menu de opções e realiza ações baseadas na escolha do usuário
-    public static void menuConsulta(CadastroConsulta cadConsulta) {
+    public static void menuConsulta(CadastroConsulta cadConsulta, CadastroExame cadExame) {
         String txt = "Informe a opção desejada \n"
                 + "1 - Cadastrar consulta\n"
                 + "2 - Pesquisar consulta\n"
@@ -121,24 +121,34 @@ public class MenuConsulta {
                     break;
 
                 case 5:
-                    // Adicionar exame à consulta
-                    LocalDate dataExame = Validacoes.obterDataValida("Informe a data da consulta para adicionar exame");
-                    String horaExame = Validacoes.obterHorarioValido();
-                    Consulta consultaExame = cadConsulta.buscarConsultaPorDataHora(dataExame, horaExame);
-                    if (consultaExame != null) {
-                        Exame novoExame = MenuExame.dadosNovoExame();
-                        if (novoExame != null) {
-                            Exame[] exames = consultaExame.getExames();
-                            Exame[] novosExames = new Exame[exames.length + 1];
-                            System.arraycopy(exames, 0, novosExames, 0, exames.length);
-                            novosExames[exames.length] = novoExame;
-                            consultaExame.setExames(novosExames);
+                // Adicionar exame à consulta
+                LocalDate dataExame = Validacoes.obterDataValida("Informe a data da consulta para adicionar exame");
+                String horaExame = Validacoes.obterHorarioValido();
+                Consulta consultaExame = cadConsulta.buscarConsultaPorDataHora(dataExame, horaExame);
+                if (consultaExame != null) {
+                    String tipo = JOptionPane.showInputDialog("Informe o tipo do exame para pesquisa: ");
+                    Exame novoExame = cadExame.pesquisarExame(tipo); // Usa a instância de CadastroExame
+                    if (novoExame != null) {
+                        Exame[] exames = consultaExame.getExames();
+                        Exame[] novosExames = new Exame[exames.length + 1];
+                        System.arraycopy(exames, 0, novosExames, 0, exames.length);
+                        novosExames[exames.length] = novoExame;
+                        consultaExame.setExames(novosExames);
+
+                        // Atualiza a consulta no sistema
+                        try {
+                            cadConsulta.atualizarConsulta(consultaExame, consultaExame);
                             JOptionPane.showMessageDialog(null, "Exame adicionado à consulta com sucesso.");
+                        } catch (HorarioIndisponivelException | PagamentoPendenteException e) {
+                            JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
                         }
                     } else {
-                        JOptionPane.showMessageDialog(null, "Consulta não encontrada.", "Erro", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Exame não encontrado.", "Erro", JOptionPane.ERROR_MESSAGE);
                     }
-                    break;
+                } else {
+                    JOptionPane.showMessageDialog(null, "Consulta não encontrada.", "Erro", JOptionPane.ERROR_MESSAGE);
+                }
+                break;
 
                 case 6:
                     // Adicionar medicamento à consulta
