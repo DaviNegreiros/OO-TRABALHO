@@ -2,8 +2,6 @@ package view;
 
 import javax.swing.JOptionPane;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
 import classes.*;
 import cadastro.*;
 import exceptions.*;
@@ -40,23 +38,6 @@ public class MenuExame {
         return JOptionPane.showInputDialog("Informe o resultado do exame: ");
     }
 
-    // Solicita o valor do exame ao usuário
-    private static float lerValor() throws CampoEmBrancoException {
-        String entrada = JOptionPane.showInputDialog("Informe o valor do exame: ");
-        if (entrada == null || entrada.trim().isEmpty()) {
-            throw new CampoEmBrancoException("O valor do exame não pode estar em branco!");
-        }
-        try {
-            float valor = Float.parseFloat(entrada);
-            if (valor <= 0) {
-                throw new CampoEmBrancoException("O valor deve ser maior que zero!");
-            }
-            return valor;
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Valor inválido! Insira um número válido.", "Erro", JOptionPane.ERROR_MESSAGE);
-            return lerValor();
-        }
-    }
 
     // Exibe o menu de opções e realiza ações baseadas na escolha do usuário
     public static void menuExame(CadastroExame cadExame) {

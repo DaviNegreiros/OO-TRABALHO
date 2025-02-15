@@ -2,6 +2,7 @@ package classes;
 
 import java.time.LocalDate;
 
+
 public class PessoaFisica {
 
     // Instâncias das Váriaveis
@@ -9,6 +10,10 @@ public class PessoaFisica {
     private String nome, cpf;
     private LocalDate nasc;
 
+
+
+
+    //CONSTRUTOR
     public PessoaFisica(String nome, String cpf, LocalDate nasc) {
         this.nome = nome;
         this.cpf = cpf;
