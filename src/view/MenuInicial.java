@@ -19,7 +19,7 @@ public class MenuInicial {
         String msg = "\n===>Menu Principal<===" +
                      "\n1. Gerenciar Médicos" +
                      "\n2. Gerenciar Pacientes" +
-                     "\n3. Gerencair Consultas" +
+                     "\n3. Gerenciar Consultas" +
                      "\n4. Gerenciar Exames" +
                      "\n0. Sair" +
                      "\nEscolha uma opção => ";
