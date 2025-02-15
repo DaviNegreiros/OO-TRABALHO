@@ -14,7 +14,19 @@ public class CadastroPaciente {
     public CadastroPaciente() {
         pacientes = new ArrayList<>();
     }
-
+    // Método para adicionar uma consulta a um paciente
+    public boolean adicionarConsultaAoPaciente(String cpf, Consulta consulta) {
+        Paciente paciente = pesquisarPaciente(cpf);
+        if (paciente != null) {
+            // Verifica se o paciente já tem uma lista de consultas
+            if (paciente.getConsultas() == null) {
+                paciente.setConsultas(new ArrayList<>());
+            }
+            paciente.getConsultas().add(consulta);
+            return true;
+        }
+        return false;
+    }
     // Método para cadastrar pacientes
     public int cadastrarPaciente(Paciente p) throws CampoEmBrancoException, CpfDuplicadoException {
         if (p == null) {

@@ -36,17 +36,7 @@ public class CadastroConsulta {
         return consultasDoPaciente;
     }
 
-    // Método para buscar consultas por médico
-    public List<Consulta> buscarConsultasPorMedico(Medico medico) {
-        List<Consulta> consultasDoMedico = new ArrayList<>();
-        for (Consulta consulta : consultas) {
-            if (consulta.getMedicoAssociado().equals(medico)) {
-                consultasDoMedico.add(consulta);
-            }
-        }
-        return consultasDoMedico;
-    }
-
+    
     // Método para listar todas as consultas
     public List<Consulta> listarConsultas() {
         return consultas;

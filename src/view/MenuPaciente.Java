@@ -4,30 +4,24 @@ import cadastro.*;
 import classes.*;
 import exceptions.*;
 import java.time.LocalDate;
+import java.util.List; // Importação adicionada
 import javax.swing.JOptionPane;
 
 public class MenuPaciente {
-    
 
     // Coleta dados do usuário e cria um novo objeto Paciente
-    
     public static Paciente dadosNovoPaciente() {
-
-    
         try {
-        String nome = lerNome();
-        String cpf = lerCPF();
-        LocalDate nasc = lerNascimento();
+            String nome = lerNome();
+            String cpf = lerCPF();
+            LocalDate nasc = lerNascimento();
             // Tenta criar um novo paciente e retorna o objeto
             return new Paciente(nome, cpf, nasc);
-
         } catch (CampoEmBrancoException e) {
             // Exibe mensagem de erro se algum campo estiver em branco
             JOptionPane.showMessageDialog(null, e.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
             return null;
-            
         }
-    
     }
 
     // Solicita o nome do paciente ao usuário
@@ -50,12 +44,13 @@ public class MenuPaciente {
     }
 
     // Exibe o menu de opções e realiza ações baseadas na escolha do usuário
-    public static void menuPaciente(CadastroPaciente cadPaciente) {
+    public static void menuPaciente(CadastroPaciente cadPaciente, CadastroConsulta cadConsulta) {
         String txt = "Informe a opção desejada \n"
                 + "1 - Cadastrar paciente\n"
                 + "2 - Pesquisar paciente\n"
                 + "3 - Atualizar paciente\n"
                 + "4 - Remover paciente\n"
+                + "5 - Adicionar consulta ao paciente\n"
                 + "0 - Voltar para menu anterior";
 
         int opcao = -1;
@@ -117,6 +112,33 @@ public class MenuPaciente {
                         JOptionPane.showMessageDialog(null, "Paciente removido do cadastro.");
                     } else {
                         JOptionPane.showMessageDialog(null, "Paciente não encontrado.");
+                    }
+                    break;
+
+                    case 5:
+                    // Adicionar consulta ao paciente
+                    cpf = lerCPF();
+                    Paciente pacienteConsulta = cadPaciente.pesquisarPaciente(cpf);
+                    if (pacienteConsulta != null) {
+                        // Solicita data e horário da consulta
+                        LocalDate dataConsulta = Validacoes.obterDataValida("Informe a data da consulta:");
+                        String horaConsulta = Validacoes.obterHorarioValido();
+
+                        // Busca a consulta por data e horário
+                        Consulta consultaEscolhida = cadConsulta.buscarConsultaPorDataHora(dataConsulta, horaConsulta);
+                        if (consultaEscolhida != null) {
+                            // Associa a consulta ao paciente
+                            boolean sucesso = cadPaciente.adicionarConsultaAoPaciente(cpf, consultaEscolhida);
+                            if (sucesso) {
+                                JOptionPane.showMessageDialog(null, "Consulta adicionada ao paciente com sucesso.");
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Erro ao adicionar consulta ao paciente.");
+                            }
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Consulta não encontrada.", "Erro", JOptionPane.ERROR_MESSAGE);
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Paciente não encontrado.", "Erro", JOptionPane.ERROR_MESSAGE);
                     }
                     break;
 

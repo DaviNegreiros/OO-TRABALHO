@@ -44,7 +44,7 @@ public class Main {
                     break;
                 case 2:
                     //Menu gerenciamento de pacientes
-                    MenuPaciente.menuPaciente(cadPac);
+                    MenuPaciente.menuPaciente(cadPac, cadCon);
                     break;
                 case 3:
                     MenuConsulta.menuConsulta(cadCon, cadEx);
